@@ -1,0 +1,335 @@
+/*style sheet of login page*/
+
+.main {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 1440px;
+    height: 752px;
+
+    background: #ffffff;
+    border-radius: 20px;
+}
+
+.error {
+    color: #FF0000;
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.nav {
+    display: flex;
+    position: absolute;
+    width: 495px;
+    height: 24px;
+    left: 46px;
+    top: 53px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 50%;
+
+    left: 50%;
+    top: 0px;
+    background: #a6b695;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+
+    display: flex;
+    margin-top: 5%;
+    align-items: center;
+
+}
+
+.form-inner-container {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.pic {
+
+    width: 112px;
+    height: 111px;
+
+
+    background: url(./img/proflle_pic.png);
+}
+
+.username {
+    display: flex;
+    position: absolute;
+    width: 685.85px;
+    height: 24.41px;
+    top: 330.58px;
+    border-bottom: 1px solid #FDF8F8;
+}
+
+.name {
+    display: flex;
+    position: absolute;
+    width: 685.85px;
+    height: 24.41px;
+    top: 193.58px;
+    border-bottom: 1px solid #FDF8F8;
+}
+
+.number {
+    display: flex;
+    position: absolute;
+    width: 985.85px;
+    height: 24.41px;
+    top: 293.58px;
+    border-bottom: 1px solid #FDF8F8;
+}
+
+.address {
+    display: flex;
+    position: absolute;
+    width: 685.85px;
+    height: 24.41px;
+    top: 253.58px;
+    border-bottom: 1px solid #FDF8F8;
+}
+
+.cpassword {
+    display: flex;
+    position: relative;
+    width: 760.85px;
+    height: 24.41px;
+    top: 400.58px;
+    border-bottom: 1px solid #FDF8F8;
+}
+
+.E1 {
+    display: flex;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: #fffdfd;
+}
+
+.password {
+    display: flex;
+    position: absolute;
+    width: 682.09px;
+    height: 24.41px;
+    top: 384px;
+    border-bottom: 1px solid #FDF8F8;
+}
+
+.P1 {
+    display: flex;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: #fffdfd;
+}
+
+.sign_in {
+    display: flex;
+    position: absolute;
+    width: 300.98px;
+    height: 63.33px;
+    left: 200px;
+    top: 513.67px;
+    background: #a7c897;
+    border-radius: 20px;
+    justify-content: center;
+}
+
+.text {
+    display: flex;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: #fffdfd;
+    justify-content: center;
+    align-items: center;
+}
+
+.forget {
+    display: flex;
+    position: absolute;
+    width: 262.88px;
+    height: 34.98px;
+    left: 30px;
+    top: 700px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+
+    color: #FFFBFB;
+}
+
+.create {
+    display: flex;
+    position: absolute;
+    width: 262.88px;
+    height: 34.98px;
+    left: 480px;
+    top: 700px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+
+    color: #FFFBFB;
+}
+
+.m_pic {
+    display: flex;
+    position: absolute;
+    width: 669px;
+    height: 596px;
+    left: 3%;
+    top: 155px;
+    background: url(../img/Pic.png);
+
+}
+
+
+
+input[type=text],
+input[type=number],
+input[type=email],
+input[type=password],
+select {
+    position: relative;
+    margin: 5px 0px 20px 0;
+    border: none;
+    transition: 0.5s;
+    outline: none;
+    background: #a6b695;
+    color: #fffdfd;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    width: 500px;
+    padding-left: 10px;
+    right: -13%;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+
+
+
+}
+
+.field label {
+    position: absolute;
+
+    color: #fffdfd;
+    font-family: 'Montserrat';
+    font-size: 25px;
+    left: 2%;
+}
+
+.signup {
+    display: flex;
+    position: relative;
+    left: 25%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 12%;
+    padding-right: 12%;
+    background-color: #A7C897;
+    align-content: center;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    color: #615D5D;
+    border-radius: 25px;
+    border: none;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.lname {
+    position: relative;
+    top: 33%;
+}
+
+.email {
+    position: relative;
+    top: 36%;
+
+}
+
+.phone_num {
+    position: relative;
+    top: 39%;
+
+}
+
+.address {
+    position: relative;
+    top: 39%;
+}
+
+.float {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    top: 30%;
+}
+
+.message {
+    display: flex;
+    position: relative;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    background: #A7C897;
+    color: #fffdfd;
+    align-content: center;
+    justify-content: center;
+    font-size: 20px;
+    border-radius: 20px;
+}
+
+
+
+
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+    color: black;
+}
