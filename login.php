@@ -52,7 +52,7 @@
 <body>
 	<?php if (isset($_GET['error'])) { ?>
 		<div class="error">
-			<?php echo $error; ?>
+			<?php echo $_GET['error']; ?>
 
 
 
@@ -89,6 +89,9 @@
 	</form>
 
 </body>
+<?php
+session_start();
+?>
 
 </html>
 

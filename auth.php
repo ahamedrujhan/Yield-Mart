@@ -28,9 +28,12 @@ if (empty($uname)) {
 
 
 
-        $_SESSION['username'] = $row['username'];
+
         $_SESSION['email'] = $row['email'];
-        $_SESSION['id'] = $row['id'];
+        $_SESSION['id'] = $row['user_id'];
+        $_SESSION['lname'] = $row['l_name'];
+        $_SESSION['role'] = $row['role'];
+
         if ($row["role"] == "Manager") {
             $url = "./manager/mdash.php";
             header("Location: $url");

@@ -669,4 +669,9 @@
 
 </body>
 
+<?php
+session_start();
+
+?>
+
 </html>

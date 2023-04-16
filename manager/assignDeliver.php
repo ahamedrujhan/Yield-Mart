@@ -1,5 +1,13 @@
 <html>
 
+<?php
+session_start();
+if ($_SESSION['role'] != "Manager") {
+    $url = "./login.php?error=Can't Access!!!";
+    header("Location: $url");
+}
+?>
+
 <head>
     <link rel="stylesheet" href="./css/orders.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">

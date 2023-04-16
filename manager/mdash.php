@@ -1,4 +1,13 @@
 <html>
+<?php
+session_start();
+?>
+<?php
+if ($_SESSION['role'] != "Manager") {
+    $url = "../login.php?error=Can't Access!!!";
+    header("Location: $url");
+}
+?>
 
 <head>
     <link rel="stylesheet" href="./css/orders.css">
@@ -10,6 +19,7 @@
 
 <body>
     <div class="main" style="height:100%; width:100%">
+
         <div class="navbar">
             <p>Ruju&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
             <img src="./images/no-image.jpg">&nbsp;&nbsp;

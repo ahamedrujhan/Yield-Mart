@@ -3,6 +3,13 @@
 include "./conn.php";
 $sql_view = "SELECT * FROM `products`";
 ?>
+<?php
+session_start();
+if ($_SESSION['role'] != "Manager") {
+    $url = "./login.php?error=Can't Access!!!";
+    header("Location: $url");
+}
+?>
 
 <head>
     <title>

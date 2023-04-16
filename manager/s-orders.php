@@ -3,6 +3,12 @@
 @include "./conn.php";
 $sqlRequestView = "SELECT * FROM `request`";
 ?>
+<?php
+if (!$_SESSION['role'] == "Manager") {
+    $url = "./login.php?error=Can't Access!!!";
+    header("Location: $url");
+}
+?>
 
 <head>
     <link rel="stylesheet" href="./css/orders.css">

@@ -4,6 +4,13 @@ include "./config.php";
 $sql_view = "SELECT * FROM `stocks`";
 ?>
 
+<?php
+if (!$_SESSION['role'] == "Manager") {
+    $url = "./login.php?error=Can't Access!!!";
+    header("Location: $url");
+}
+?>
+
 <head>
     <title>
         Stocks
