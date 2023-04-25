@@ -1,4 +1,12 @@
 <?php
+session_start();
+if ($_SESSION['role'] != "Admin") {
+    $url = "./login.php?error=Can't Access!!!";
+    header("Location: $url");
+}
+?>
+<?php
+//admin dashboard
 include "./header.php";
 ?>
 <html>

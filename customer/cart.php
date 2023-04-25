@@ -1,6 +1,14 @@
 <?php
+session_start();
+if ($_SESSION['role'] != "Customer") {
+   $url = "./login.php?error=Can't Access!!!";
+   header("Location: $url");
+}
+?>
+<?php
 
 @include 'config.php';
+//customer cart page for add or remove things in cart db
 
 if (isset($_POST['update_update_btn'])) {
    $update_value = $_POST['update_quantity'];

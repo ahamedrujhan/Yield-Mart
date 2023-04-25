@@ -1,4 +1,5 @@
 <?php
+//old one now in manager
 include "./config.php";
 include "./header_f.php";
 ?>

@@ -1,5 +1,12 @@
 <?php
-
+session_start();
+if ($_SESSION['role'] != "Farmer") {
+   $url = "./login.php?error=Can't Access!!!";
+   header("Location: $url");
+}
+?>
+<?php
+//farmer cart page to change or remove thigs in mart db
 @include 'config.php';
 include "./conn.php";
 

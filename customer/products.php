@@ -1,5 +1,12 @@
 <?php
-
+session_start();
+if ($_SESSION['role'] != "Customer") {
+   $url = "./login.php?error=Can't Access!!!";
+   header("Location: $url");
+}
+?>
+<?php
+//Customer view products
 @include 'config.php';
 include "./conn.php";
 

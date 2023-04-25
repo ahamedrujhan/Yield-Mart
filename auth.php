@@ -38,10 +38,10 @@ if (empty($uname)) {
             $url = "./manager/mdash.php";
             header("Location: $url");
         }
-        if ($row["role"] == "Farmer") {
+        /*if ($row["role"] == "Farmer") {
             $url = "./Farmer/stocks.php";
             header("Location: $url");
-        }
+        }*/
         if ($row["role"] == "Farmer") {
             $url = "./farmer_new/stocks.php";
             header("Location: $url");

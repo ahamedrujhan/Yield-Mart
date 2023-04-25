@@ -1,4 +1,5 @@
 <?php
+//mart db config
 $servername = "localhost";
 $username = "root";
 $password = "";
