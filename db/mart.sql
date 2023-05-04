@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 25, 2023 at 08:04 AM
+-- Generation Time: May 04, 2023 at 08:41 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.1.6
 
@@ -121,11 +121,25 @@ CREATE TABLE `requests` (
   `stock_id` int(10) NOT NULL,
   `quantity` int(10) NOT NULL,
   `price` int(5) NOT NULL,
-  `message` varchar(225) NOT NULL,
+  `f_name` varchar(225) NOT NULL,
   `total` int(10) NOT NULL,
-  `image` varchar(200) NOT NULL,
+  `s_name` varchar(200) NOT NULL,
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`request_id`, `farmer_id`, `stock_id`, `quantity`, `price`, `f_name`, `total`, `s_name`, `status`) VALUES
+(8, 3, 21, 100, 50, 'racshu', 5000, 'Wood Apple', 0),
+(9, 3, 21, 100, 5, 'racshu', 5000, 'Wood Apple', 2),
+(10, 3, 21, 100, 500, 'racshu', 5000, 'Wood Apple', 3),
+(11, 3, 21, 200, 50, 'racshu', 5000, 'Wood Apple', 2),
+(12, 3, 21, 200, 500, 'racshu', 5000, 'Wood Apple', 4),
+(13, 3, 21, 100, 50, 'racshu', 5000, 'Wood Apple', 0),
+(14, 3, 22, 100, 5, 'racshu', 500, 'Carrot', 2),
+(15, 3, 24, 100, 10, 'racshu', 1000, 'Pineapple', 3);
 
 -- --------------------------------------------------------
 
@@ -138,6 +152,7 @@ CREATE TABLE `stock` (
   `name` varchar(30) NOT NULL,
   `quantity` int(6) NOT NULL,
   `image` varchar(200) NOT NULL,
+  `type` varchar(10) NOT NULL,
   `listed_on` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -145,8 +160,11 @@ CREATE TABLE `stock` (
 -- Dumping data for table `stock`
 --
 
-INSERT INTO `stock` (`stock_id`, `name`, `quantity`, `image`, `listed_on`) VALUES
-(4, 'Apple', 100, 'green-apple-removebg-preview.png', '2023-02-04 15:53:43');
+INSERT INTO `stock` (`stock_id`, `name`, `quantity`, `image`, `type`, `listed_on`) VALUES
+(20, 'Apple', 200, 'IMG-644dff73d28be3.83110111.png', 'Pices', '2023-04-30 11:11:07'),
+(21, 'Wood Apple', 150, 'IMG-644e029e285f69.09340202.png', 'Pices', '2023-04-30 11:24:38'),
+(22, 'Carrot', 400, 'IMG-644e02adbc9669.16870832.png', 'Kg', '2023-04-30 11:24:53'),
+(24, 'Pineapple', 1000, 'IMG-6450be41975316.93181863.png', 'Pices', '2023-05-02 13:09:45');
 
 -- --------------------------------------------------------
 
@@ -281,13 +299,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `request_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `request_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `stock_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `users`

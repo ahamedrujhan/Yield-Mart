@@ -1,7 +1,7 @@
 <html>
 <?php
 @include "./conn.php";
-$sqlRequestView = "SELECT * FROM `request`";
+
 ?>
 <?php
 session_start();
@@ -26,6 +26,7 @@ if ($_SESSION['role'] != "Manager") {
         <div class="head">
             <h1>Orders</h1>
         </div>
+
 
         <br>
         <div class="content">

@@ -13,6 +13,7 @@
     <!-- owl carousel cnd link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Yeild Mart</title>
 </head>
 
@@ -41,7 +42,7 @@
                 <div id="icon-shopping-cart"><span class="icon-cart-arrow-down"><span id="item-counter">0</span></div>
                 <div id="login-or-signup"><span class="icon-user"></div>
 
-                <div id="customer-center"><span class="bi bi-box-arrow-right" onclick="window.location.href='../logout.php';">LogOut</span></div>
+                <div id="customer-center"><span class="bi bi-box-arrow-right" onclick="window.location.href='./login.php';">LogIn</span></div>
                 <div id="toggle-bar"><span class="toggler"></span></div>
 
             </div>
@@ -57,10 +58,10 @@
         <!-- slide button -->
         <div class="bg-slide-btn">
             <div class="bg-slide-left">
-                <span class="icon-arrow-left"></span>
+                <i class="fa-solid fa-arrow-left fa-xl" style="color: #ffffff;"></i>
             </div>
             <div class="bg-slide-right">
-                <span class="icon-arrow-right"></span>
+                <i class="fa-solid fa-arrow-right fa-xl" style="color: #ffffff;"></i>
             </div>
         </div>
 
