@@ -1,62 +1,112 @@
-<?php
-session_start();
-if ($_SESSION['role'] != "Farmer") {
-    $url = "./login.php?error=Can't Access!!!";
-    header("Location: $url");
-}
-?>
+<html>
 
-<!DOCTYPE html>
-<html lang="en">
+<head></head>
+<style>
+    #popup {
+        display: none;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Stocks </title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./js/popup.js"></script>
+    .popup-container {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(96 95 127 / 75%);
+        position: absolute;
+        top: 0;
+        left: 0;
 
-    <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    }
 
-    <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    .popup {
+        background-color: #ffffff;
+        padding: 20px 30px;
+        width: 40%;
+        border-radius: 15px;
 
-<body>
-    <div class="mains">
-        <?php include 'header.php'; ?>
+    }
 
+    .close-popup {
+        display: flex;
+        justify-content: flex-end;
+    }
 
+    .close-popup a {
+        font-size: 1.2rem;
+        background-color: rebeccapurple;
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 10px;
+        display: inline-block;
+    }
 
-        <section>
-            <div>
-                <!-- Here Main content -->
-                <h4>Popup With blur Effect</h4>
-                <p>This is simple section with Image BackGround To Show the Popup click on the Show button. </p>
-                <!-- on click to show -->
-                <button class="show-pop">Show</button>
+    .popup>h2 {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+    }
+
+    .popup>p {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .req {
+        font-size: 2rem;
+    }
+
+    #quantity {
+        width: auto;
+        height: 2.5rem;
+
+    }
+
+    input[name="que"] {
+        width: 20%;
+        border: 2px solid #aaa;
+        border-radius: 4px;
+        margin: 8px 0;
+        outline: none;
+        padding: 8px;
+        box-sizing: border-box;
+        transition: .3s;
+    }
+</style>
+<button id="clickBtn">Click meeeee....</button>
+<div id="popup">
+    <div class="popup-container">
+        <div class="popup">
+            <div class="close-popup" id="closeBtn">
+                <a href="#">X</a>
             </div>
-
-        </section>
-        <!-- Bluer -->
-        <div class="overly">
-            <div class="pop-up">
-                <!-- Popup ui -->
-                <h4 class="title">simple Popup</h4>
-                <br>
-                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nesciunt,
-                    sed perspiciatis facere asperiores voluptates, ipsam nisi molestiae
-                    cupiditate non cumque maxime beatae excepturi corporis ut tempora provident repudiandae totam?</p>
-                <!-- close button -->
-                <button class="close-pop">close me</button>
-            </div>
-
+            <h1 class="req">Update</h1>
+            <p>
+                <img id='img-popup' src="" alt="">
+            <h3 id='stock_name'></h3>
+            <p id='quantity'>
+            <h3>Quantity :&nbsp;
+                <input type='number' name="que" placeholder='Quantity' id="qua"></p>
+            </h3>
+            </p>
+            <button id="clickBtn" class="btn">Update</button>
         </div>
+    </div>
+</div>
+<script>
+    const clickBtn = document.getElementById("clickBtn");
+    const popup = document.getElementById("popup");
+    const closeBtn = document.getElementById("closeBtn");
 
+    clickBtn.addEventListener('click', () => {
+        popup.style.display = 'block';
+    });
 
-
-</body>
+    closeBtn.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
+</script>
 
 </html>

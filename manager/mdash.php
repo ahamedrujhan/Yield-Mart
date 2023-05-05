@@ -39,7 +39,7 @@ if ($_SESSION['role'] != "Manager") {
                 <button class="c-b" onclick="window.location.href='./f-orders.php';">Orders</button>
             </div>
             <div class="s-container">
-                <h3>Selling</h3>
+                <h3>Wholeseller</h3>
                 <button class="c-b" onclick="window.location.href='./addProducts.php';">Product Management</button>
                 <button class="c-b" onclick="window.location.href='./products.php';">View Available Products</button>
                 <button class="c-b" onclick="window.location.href='./s-orders.php';">Orders</button>

@@ -19,7 +19,8 @@ function del($id)
     // header("Location:addStocks.php?message=$message");
     $url = "addStocks.php?message=$message";
     if ($resutl == TRUE) {
-        header("Location: $url");
+        // header("Location: $url");
+        echo "<script>window.location.href='$url';</script>";
     }
 }
 
@@ -41,6 +42,97 @@ function del($id)
     <link rel="stylesheet" href="./css/orders.css">
 
 </head>
+<style>
+    #popup {
+        display: none;
+        top: 10%
+    }
+
+    .popup-container {
+        font-family: 'Poppins', sans-serif;
+
+        height: 60rem;
+        font-weight: bold;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(96 95 127 / 75%);
+        position: absolute;
+        top: 0;
+        left: 0;
+
+    }
+
+    .popupc {
+        background-color: #ffffff;
+        padding: 20px 30px;
+        width: 30%;
+        border-radius: 15px;
+
+    }
+
+    .close-popup {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .close-popup a {
+        font-size: 1.2rem;
+        background-color: rebeccapurple;
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 10px;
+        display: inline-block;
+    }
+
+    .popupc>h2 {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+    }
+
+    .popupc>p {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .req {
+        font-size: 2rem;
+    }
+
+    #quantity {
+        width: auto;
+        height: 2.5rem;
+
+
+    }
+
+    #img-popup {
+        height: 20rem;
+        width: 20rem;
+        margin-left: 8%;
+        margin-right: auto;
+    }
+
+    input[name="que"] {
+        width: 20%;
+        border: 2px solid #aaa;
+        border-radius: 4px;
+        margin: 8px 0;
+        outline: none;
+        padding: 8px;
+        box-sizing: border-box;
+        transition: .3s;
+        font-size: medium;
+    }
+
+    .req {
+        text-align: center;
+    }
+</style>
 
 <body>
     <div class="main">
@@ -75,6 +167,31 @@ function del($id)
                 </form>
 
             </section>
+            <div id="popup">
+                <div class="popup-container">
+                    <div class="popupc">
+                        <div class="close-popup" id="closeBtn">
+                            <a href="#">X</a>
+                        </div>
+                        <h1 class="req">Update</h1>
+                        <p>
+                            &nbsp;&nbsp;&nbsp;
+                            <img id='img-popup' src="" alt="">
+                        <h3 id='stock_name'></h3>
+                        <p id='quantity'>
+                        <h2 style="text-align: center;">Quantity :&nbsp;
+                            <input type='number' name="que" placeholder='Quantity' id="qua"></p>
+                        </h2>
+                        </p>
+                        <form method="post">
+                            <button id="clickBtn" class="btn" onclick=func() name="update">Update</button>
+
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
 
             <section class="product-table">
 
@@ -93,6 +210,7 @@ function del($id)
                         $select_products = mysqli_query($conn, $sql_view);
                         if (mysqli_num_rows($select_products) > 0) {
                             while ($row = mysqli_fetch_assoc($select_products)) {
+
                         ?>
 
                                 <tr>
@@ -109,9 +227,9 @@ function del($id)
                                         ?>
                                         <form method="POST">
                                             <button class="delete-btn" type="submit" name="del<?php echo $id; ?>"><i class="fas fa-trash"></i>Delete</button>
-
-                                            <button class="update-btn"><i class="fa-regular fa-pen-to-square"></i>Update</button>
                                         </form>
+                                        <button class="update-btn" id="clickBtn" onclick="document.getElementById('popup').style.display='block'; document.getElementById('qua').value='<?php echo $row['quantity'];  ?>'; document.getElementById('img-popup').src='../farmer_new/stock_img/<?php echo $row['image']; ?>'; d=<?php echo $row['stock_id']; ?>;"><i class="fa-regular fa-pen-to-square"></i>Update</button>
+
 
 
 
@@ -126,9 +244,32 @@ function del($id)
                         ?>
                     </tbody>
                 </table>
+                <script>
+                    const clickBtn = document.getElementById("clickBtn");
+                    const popup = document.getElementById("popup");
+                    const closeBtn = document.getElementById("closeBtn");
+
+                    clickBtn.addEventListener('click', () => {
+                        popup.style.display = 'block';
+                    });
+
+                    closeBtn.addEventListener('click', () => {
+                        popup.style.display = 'none';
+                        document.cookie = "upqua =" + null;
+                        document.cookie = "Sid =" + null;
+                    });
+
+                    function func() {
+                        i = document.getElementById('qua').value;
+                        document.cookie = "upqua =" + i;
+                        document.cookie = "Sid =" + d;
+
+                    }
+                </script>
 
             </section>
         </div>
+
 
 
 
@@ -189,11 +330,25 @@ if (isset($_POST['add_product'])) {
     }
 
     if ($result_insert == TRUE) {
-
         $message = "Stock added successfully!";
-        header("Location:addStocks.php?message=$message");
+        // header("Location:addStocks.php?message=$message");
+        echo "<script>window.location.href='addStocks.php?message=$message';</script>";
+        exit();
     }
 }
+if (isset($_POST["update"])) {
+    $id = $_COOKIE["Sid"];
+    $qua = $_COOKIE["upqua"];
+    $update = "UPDATE `stock` SET `quantity`=$qua WHERE `stock_id`=$id";
+    $res = mysqli_query($conn, $update);
+    if ($res == true) {
+        $message1 = "Updated Successfully...";
+        // header("Location:addStocks.php?message=$message1");
+        echo "<script>window.location.href='addStocks.php?message=$message1';</script>";
+        exit();
+    }
 
+    // var_dump($id, $qua);
+}
 
 ?>

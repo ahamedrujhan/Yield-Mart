@@ -218,6 +218,8 @@ include "./conn.php";
                while ($fetch_stocks = mysqli_fetch_assoc($select_stocks)) {
 
 
+
+
             ?>
 
 
@@ -247,6 +249,7 @@ include "./conn.php";
 
 
                               <form method="POST">
+
                                  <button class="btn" name="req">Request</button>
                               </form>
                            </div>
@@ -269,7 +272,8 @@ include "./conn.php";
                      </form>
                      <!-- <input type="submit" class="btn" value="Sell" name="sell"> -->
                      <button id="clickBtn" class="btn" onclick="document.getElementById('popup').style.display='block';document.getElementById('head').style.display='none';document.getElementById('img-popup').src='stock_img/<?php echo $fetch_stocks['image']; ?>';
-                     document.getElementById('stock_name').innerHTML='<?php echo $fetch_stocks['name']; ?>';  n='<?php echo $fetch_stocks['name']; ?>';  i='<?php echo $fetch_stocks['stock_id']; ?>'; ">Sell</button>
+                     document.getElementById('stock_name').innerHTML='<?php echo $fetch_stocks['name']; ?>';  n='<?php echo $fetch_stocks['name']; ?>';  i='<?php echo $fetch_stocks['stock_id'];  ?>';
+                     qu='<?php echo $fetch_stocks['quantity']; ?>'; ">Sell</button>
 
 
                      <script>
@@ -313,6 +317,7 @@ include "./conn.php";
                            document.cookie = "tot =" + result;
                            document.cookie = "s_name =" + n;
                            document.cookie = "s_id =" + i;
+                           document.cookie = "quantity =" + qu;
                         }
 
                         // popup.addEventListener('click', () => {
@@ -324,6 +329,7 @@ include "./conn.php";
                   </div>
                   <!-- </form> -->
             <?php
+
                };
             };
 
@@ -337,14 +343,18 @@ include "./conn.php";
             $tot = $_COOKIE["tot"];
             $s_id = $_COOKIE["s_id"];
             $s_name = $_COOKIE["s_name"];
+            $quantity = $_COOKIE["quantity"];
+            //var_dump($quantity);
             // $sql_request = "INSERT INTO 'requests'(farmer_id, stock_id, quantity, price, f_name, total, s_name,status) VALUES ('$f_id','$s_id', '$que', '$pri', '$f_name', '$tot', '$s_name', '0')";
-            $sql_request = "INSERT INTO `requests`(`farmer_id`, `stock_id`, `quantity`, `price`, `f_name`, `total`, `s_name`, `status`) VALUES ('$f_id','$s_id','$que','$pri','$f_name','$tot','$s_name','0')";
-            $result_request = mysqli_query($con, $sql_request)  or die("query failed");
-            unset($_POST);
-            $_POST = array();
-            unset($_SESSION['postdata']);
+            if ($quantity >= $que) {
+               $sql_request = "INSERT INTO `requests`(`farmer_id`, `stock_id`, `quantity`, `price`, `f_name`, `total`, `s_name`, `status`) VALUES ('$f_id','$s_id','$que','$pri','$f_name','$tot','$s_name','0')";
+               $result_request = mysqli_query($con, $sql_request)  or die("query failed");
+               unset($_POST);
+               $_POST = array();
+               unset($_SESSION['postdata']);
 
-            // var_dump($que, $pri, $tot, $f_id, $f_name, $s_id, $s_name);
+               // var_dump($que, $pri, $tot, $f_id, $f_name, $s_id, $s_name);
+            }
          }
          ?>
 

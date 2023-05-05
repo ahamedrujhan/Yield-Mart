@@ -6,7 +6,7 @@
 <?php
 session_start();
 if ($_SESSION['role'] != "Farmer") {
-    $url = "./login.php?error=Can't Access!!!";
+    $url = "../login.php?error=Can't Access!!!";
     header("Location: $url");
 }
 $id = $_SESSION['id'];
@@ -21,7 +21,7 @@ $sql_3 = "SELECT * FROM `requests` WHERE status=3 AND farmer_id=$id"; //rejected
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.
     min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -30,6 +30,11 @@ $sql_3 = "SELECT * FROM `requests` WHERE status=3 AND farmer_id=$id"; //rejected
     <div class="main">
         <div class="head">
             <h1>Orders</h1>
+        </div>
+        <br>
+        <div class="conformed">
+            <h3>&nbsp;Process Orders</h3>
+
         </div>
         <?php
 
@@ -71,9 +76,9 @@ $sql_3 = "SELECT * FROM `requests` WHERE status=3 AND farmer_id=$id"; //rejected
                     </p>
                     <form method="POST">
                         <br>
-                        <button class=accept type="submit" name="accept<?php echo $Rid; ?>"><i class="fa fa-check" aria-hidden="true"></i> Accept</button>
+                        <button class=accept type="submit" name="accept<?php echo $Rid; ?>"><i class="fa-sharp fa-regular fa-arrow-left"></i> Process</button>
                         &nbsp;
-                        <button class=reject type="submit" name="reject<?php echo $Rid; ?>"><i class=" fa fa-times" aria-hidden="true"></i> Reject</button>
+                        <button class=reject type="submit" name="reject<?php echo $Rid; ?>"><i class=" fa fa-times" aria-hidden="true"></i> Cancel</button>
                         &nbsp;
                     </form>
                 </div>
@@ -87,6 +92,12 @@ $sql_3 = "SELECT * FROM `requests` WHERE status=3 AND farmer_id=$id"; //rejected
                         $sqlup = "UPDATE `stock` SET `quantity`=$bal WHERE `stock_id`=$Sid";
                         $sqlreup = mysqli_query($con, $sqlup);
                         header("Location:orders_f.php");
+                    } else {
+                        echo "<script>
+                        alert('Quantity EXCEEDED!');
+                        </script>";
+                        $sqlRequestaccept = "UPDATE `requests` SET `status`=4 WHERE `request_id`=$Rid";
+                        $sqlAccept = mysqli_query($con, $sqlRequestaccept);
                     }
                     //var_dump($Rid, $que_f, $Sid, $que, $bal);
 

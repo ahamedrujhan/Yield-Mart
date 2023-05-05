@@ -39,6 +39,7 @@ if ($_SESSION['role'] != "Manager") {
         $sqlRequestViewResult = mysqli_query($conn, $sqlRequestView_2);
         if (mysqli_num_rows($sqlRequestViewResult) > 0) {
             while ($row = mysqli_fetch_assoc($sqlRequestViewResult)) {
+                $Rid = $row["request_id"];
 
 
 
@@ -66,11 +67,20 @@ if ($_SESSION['role'] != "Manager") {
                         &nbsp;Total: <b><?php echo $row["total"]; ?></b>
 
                     </p>
-                    <p id=c><i class="fa-solid fa-truck"></i> Delivered</p>&nbsp;&nbsp;
-                    <p id=a><i class="fa fa-check" aria-hidden="true"></i>Accepted</p>&nbsp;&nbsp;
+                    <form method="post">
+
+                        <button id=c type="submit" name="deliver<?php echo $Rid; ?>"><i class="fa-solid fa-truck"></i> Delivered</button>
+                        &nbsp;&nbsp;
+                    </form>
+
 
                 </div>
         <?php
+                if (isset($_POST["deliver$Rid"])) {
+                    $sql_4 = "UPDATE `requests` SET `status`=4 WHERE `request_id`=$Rid";
+                    $sqlAccept = mysqli_query($conn, $sql_4);
+                    header("Location:f-orders.php");
+                }
             }
         } ?>
         <br>
@@ -90,46 +100,47 @@ if ($_SESSION['role'] != "Manager") {
         ?>
 
                 <br>
-                <div class="conform">
-                    <div class="content">
-                        <p id=f>
-                            &nbsp;Farmer ID: <b><?php echo $row["farmer_id"]; ?></b>
-                            <br>
-                            <br>
-                            &nbsp;Farmer Name: <b><?php echo $row["f_name"]; ?></b>
 
-                        </p>
-                        <p id=s>
-                            &nbsp;Stock: <b><?php echo $row["s_name"]; ?></b>
-                            <br>
-                            &nbsp;Quantity: <b><?php echo $row["quantity"]; ?></b>
-                            <br>
-                            &nbsp;Price: <b><?php echo $row["price"]; ?></b>
-                        </p>
-                        <p id=s>
-                            <br>
-                            &nbsp;Total: <b><?php echo $row["total"]; ?></b>
+                <div class="content">
+                    <p id=f>
+                        &nbsp;Farmer ID: <b><?php echo $row["farmer_id"]; ?></b>
+                        <br>
+                        <br>
+                        &nbsp;Farmer Name: <b><?php echo $row["f_name"]; ?></b>
 
-                        </p>
-                        <p id=a><i class="fa-solid fa-thumbs-up"></i> Finished</p>&nbsp;&nbsp;
+                    </p>
+                    <p id=s>
+                        &nbsp;Stock: <b><?php echo $row["s_name"]; ?></b>
+                        <br>
+                        &nbsp;Quantity: <b><?php echo $row["quantity"]; ?></b>
+                        <br>
+                        &nbsp;Price: <b><?php echo $row["price"]; ?></b>
+                    </p>
+                    <p id=s>
+                        <br>
+                        &nbsp;Total: <b><?php echo $row["total"]; ?></b>
 
-                    </div>
-            <?php
-            }
-        }
-            ?>
+                    </p>
+                    <p id=a><i class="fa-solid fa-thumbs-up"></i> Finished</p>&nbsp;&nbsp;
 
                 </div>
-                <br>
+        <?php
+            }
+        }
+        ?>
 
 
-    </div>
-    <br><br>
-    <footer>
-        <div class="container">
-            <p>Yield Mart ©2023</p>
-        </div>
-    </footer>
+        <br>
+
+
+
+        <br><br>
+        <footer>
+            <div class="container">
+                <p>Yield Mart ©2023</p>
+            </div>
+        </footer>
+
 
 </body>
 
