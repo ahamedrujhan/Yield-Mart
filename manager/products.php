@@ -37,7 +37,7 @@ if ($_SESSION['role'] != "Manager") {
             ?>
 
                     <div class="card">
-                        <img src="./stock_img/<?php echo $row['image']; ?>">
+                        <img src="./product_img/<?php echo $row['image']; ?>">
                         <p><?php echo $row['name']; ?></p>
                         <p>Available: <?php echo $row['quantity']; ?></p>
                         <p>Price: <?php echo $row['price']; ?>/=</p>
@@ -46,13 +46,14 @@ if ($_SESSION['role'] != "Manager") {
             }
             ?>
         </div>
+        <br><br>
+        <footer>
+            <div class="container">
+                <p>Yield Mart ©2023</p>
+            </div>
+        </footer>
     </div>
-    <br><br>
-    <footer>
-        <div class="container">
-            <p>Yield Mart ©2023</p>
-        </div>
-    </footer>
+
 </body>
 
 </html>

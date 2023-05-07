@@ -19,7 +19,20 @@ $id = $_SESSION['id'];
 if (isset($_POST['update_update_btn'])) {
    $update_value = $_POST['update_quantity'];
    $update_id = $_POST['update_quantity_id'];
-   $update_quantity_query = mysqli_query($con, "UPDATE `cart` SET quantity = '$update_value' WHERE id = '$update_id'");
+   $product_id = $_POST['update_product_id'];
+   $ca = mysqli_query($con, "SELECT quantity FROM `cart` WHERE id='$update_id'");
+   $ca1 = mysqli_fetch_row($ca);
+   $cav = (int)$ca1[0];
+   $res = mysqli_query($con, "SELECT quantity, IF(quantity-'$update_value'+'$cav' >= 0, 'TRUE', 'FALSE') FROM `products` WHERE product_id='$product_id';");
+   $re1 = mysqli_fetch_assoc($res);
+   $rest = $re1["IF(quantity-'$update_value'+'$cav' >= 0, 'TRUE', 'FALSE')"];
+   //var_dump($rest) or die();
+   if ($rest == 'TRUE') {
+      $ins = mysqli_query($con, "UPDATE `products` SET quantity= quantity-$update_value+$cav WHERE product_id = '$product_id'");
+      $update_quantity_query = mysqli_query($con, "UPDATE `cart` SET quantity = '$update_value' WHERE id = '$update_id'");
+   } else {
+      echo "<script>alert('Quantity Exceed')</script>";
+   }
    if ($update_quantity_query) {
       header('location:cart.php');
    };
@@ -27,7 +40,10 @@ if (isset($_POST['update_update_btn'])) {
 
 if (isset($_POST['remove'])) {
    $remove_id = $_POST['id'];
+   $product_id = $_POST['remove_product_id'];
+   $qty = $_POST["remove_quantity"];
    mysqli_query($con, "DELETE FROM `cart` WHERE id = '$remove_id' AND user_id='$id'");
+   mysqli_query($con, "UPDATE `products` SET quantity= quantity+$qty WHERE product_id = '$product_id'");
    header('location:cart.php');
 };
 
@@ -112,31 +128,36 @@ if (isset($_POST['removeall'])) {
                         <td>
                            <form action="" method="post">
                               <input type="hidden" name="update_quantity_id" value="<?php echo $fetch_cart['id']; ?>">
+                              <input type="hidden" name="update_product_id" value="<?php echo $fetch_cart['product_id']; ?>">
                               <input type="number" name="update_quantity" min="1" value="<?php echo $fetch_cart['quantity']; ?>">
                               <input type="submit" value="update" name="update_update_btn">
                            </form>
                         </td>
-                        <td>Rs.<?php echo $sub_total = number_format($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</td>
+                        <td>Rs.<?php echo $sub_total = number_format($fetch_cart['price'] * $fetch_cart['quantity']);
+                                 $tot = $fetch_cart['price'] * $fetch_cart['quantity']; ?>/-</td>
                         <td>
                            <form action="" method="post">
                               <input type="hidden" name="id" value="<?php echo $fetch_cart['id']; ?>">
+                              <input type="hidden" name="remove_product_id" value="<?php echo $fetch_cart['product_id']; ?>">
+                              <input type="hidden" name="remove_quantity" value="<?php echo $fetch_cart['quantity']; ?>">
                               <button type="submit" name="remove" class="delete-btn"> <i class="fas fa-trash"></i>Remove</button>
                            </form>
                         </td>
                      </tr>
                <?php
-                     $grand_total += $sub_total;
+                     $grand_total += $tot;
                   };
                };
                ?>
                <tr class="table-bottom">
                   <td><a href="products.php" class="option-btn" style="margin-top: 0;">continue shopping</a></td>
                   <td colspan="3">grand total</td>
-                  <td>Rs.<?php echo $grand_total; ?>/-</td>
+                  <td>Rs.<?php echo number_format($grand_total);
+                           ?>/-</td>
                   <td>
-                     <form action="" method="post">
+                     <!-- <form action="" method="post">
                         <button type="submit" name="removeall" class="delete-btn"> <i class="fas fa-trash"></i>Delete all</button>
-                     </form>
+                     </form> -->
                   </td>
                </tr>
 

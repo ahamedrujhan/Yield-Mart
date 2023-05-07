@@ -259,7 +259,7 @@ include "./conn.php";
 
 
 
-                     <img src="stock_img/<?php echo $fetch_stocks['image']; ?>" alt="">
+                     <img src="stock_img/<?php echo $fetch_stocks['image']; ?>" alt="" style="width: 280px;">
                      <h3><?php echo $fetch_stocks['name']; ?></h3>
                      <div class="price">Quantity: <?php echo $fetch_stocks['quantity']; ?> <?php echo $fetch_stocks['type']; ?></div>
                      <!-- <input type="hidden" name="stocks_name" value="<?php echo $fetch_stocks['name']; ?>">

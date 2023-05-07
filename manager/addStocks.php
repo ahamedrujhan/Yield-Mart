@@ -156,10 +156,12 @@ function del($id)
                 <form action="" method="POST" class="add-product-form" enctype="multipart/form-data">
                     <h3>Add a New Stocks</h3>
                     <input type="text" name="p_name" placeholder="Enter the Stock Name" class="box" required>
-                    <input type="number" name="p_value" min="0" placeholder="Enter the Amount" class="box" style="width:70%" required>&nbsp;
+                    <input type="number" name="p_value" min="0" placeholder="Enter the Quantity" class="box" style="width:70%" required>&nbsp;
                     <select name="p_type" class="box" style="width:20%">
-                        <option value="Pices">Pieces</option>
                         <option value="Kg">Kg</option>
+                        <option value="Pices">Pieces</option>
+                        <option value="">None</option>
+
                     </select>
 
                     <input type="file" name="p_image" accept="image/png, image/jpg, image/jpeg" class="box" required>
@@ -281,59 +283,68 @@ if (isset($_POST['add_product'])) {
 
 
 
+
     $p_name = $_POST["p_name"];
     $p_value = $_POST["p_value"];
     $p_type = $_POST["p_type"];
-
-    $img_name = $_FILES["p_image"]['name'];
-    $img_size = $_FILES["p_image"]['size'];
-    $tmp_name = $_FILES["p_image"]['tmp_name'];
-
-
-
-    if ($img_size > 5000000) {
-        // $em = "Sorry, your file is too large.";
-        // header("Location: index.php?error=$em");
+    $chk = "SELECT * FROM `stock` WHERE name ='$p_name'";
+    $res = mysqli_query($conn, $chk);
+    $r = mysqli_num_rows($res);
+    if ($r > 0) {
+        $message2 = "Stock Already Exists...";
+        echo "<script>window.location.href='addStocks.php?message=$message2';</script>";
     } else {
 
-        $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-        $img_ex_lc = strtolower($img_ex);
-        // print_r($img_ex);
-        // die();
-        $allowed_exs = array("jpg", "jpeg", "png");
+        $img_name = $_FILES["p_image"]['name'];
+        $img_size = $_FILES["p_image"]['size'];
+        $tmp_name = $_FILES["p_image"]['tmp_name'];
 
-        if (in_array($img_ex_lc, $allowed_exs)) {
-            $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
-            $img_upload_path = '../farmer_new/stock_img/' . $new_img_name;
-            $res = move_uploaded_file($tmp_name, $img_upload_path);
-            $p_iname = $new_img_name;
 
-            // Insert into Database
-            // $sql = "INSERT INTO images(image_url) 
-            //         VALUES('$new_img_name')";
-            // mysqli_query($conn, $sql);
 
+        if ($img_size > 5000000) {
+            // $em = "Sorry, your file is too large.";
+            // header("Location: index.php?error=$em");
+        } else {
+
+            $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+            $img_ex_lc = strtolower($img_ex);
+            // print_r($img_ex);
+            // die();
+            $allowed_exs = array("jpg", "jpeg", "png");
+
+            if (in_array($img_ex_lc, $allowed_exs)) {
+                $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
+                $img_upload_path = '../farmer_new/stock_img/' . $new_img_name;
+                $res = move_uploaded_file($tmp_name, $img_upload_path);
+                $p_iname = $new_img_name;
+
+                // Insert into Database
+                // $sql = "INSERT INTO images(image_url) 
+                //         VALUES('$new_img_name')";
+                // mysqli_query($conn, $sql);
+
+            }
         }
-    }
 
 
 
-    $sql_insert = "INSERT INTO `stock`(name, quantity, image, type, listed_on) VALUES('$p_name', '$p_value', '$p_iname','$p_type', CURRENT_TIMESTAMP)";
+        $sql_insert = "INSERT INTO `stock`(name, quantity, image, type, listed_on) VALUES('$p_name', '$p_value', '$p_iname','$p_type', CURRENT_TIMESTAMP)";
 
-    if (isset($p_name) && isset($p_value) && isset($p_iname)) {
+        if (isset($p_name) && isset($p_value) && isset($p_iname)) {
 
-        $result_insert = mysqli_query($conn, $sql_insert) or die("query failed");
-        // print_r($result_insert) or die();
-        unset($_POST);
-        $_POST = array();
-        unset($_SESSION['postdata']);
-    }
+            $result_insert = mysqli_query($conn, $sql_insert) or die("query failed");
+            // print_r($result_insert) or die();
+            unset($_POST);
+            $_POST = array();
+            unset($_SESSION['postdata']);
+        }
 
-    if ($result_insert == TRUE) {
-        $message = "Stock added successfully!";
-        // header("Location:addStocks.php?message=$message");
-        echo "<script>window.location.href='addStocks.php?message=$message';</script>";
-        exit();
+        if ($result_insert == TRUE) {
+            $message = "Stock added successfully!";
+            // header("Location:addStocks.php?message=$message");
+            echo "<script>window.location.href='addStocks.php?message=$message';</script>";
+            exit();
+        }
     }
 }
 if (isset($_POST["update"])) {

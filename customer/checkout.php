@@ -26,7 +26,7 @@ if (isset($_POST['order_btn'])) {
    if (mysqli_num_rows($cart_query) > 0) {
       while ($product_item = mysqli_fetch_assoc($cart_query)) {
          $product_name[] = $product_item['name'] . ' (' . $product_item['quantity'] . ') ';
-         $product_price = number_format($product_item['price'] * $product_item['quantity']);
+         $product_price = $product_item['price'] * $product_item['quantity'];
          $price_total += $product_price;
       };
    };
@@ -136,7 +136,7 @@ if (isset($_POST['order_btn'])) {
                $grand_total = 0;
                if (mysqli_num_rows($select_cart) > 0) {
                   while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
-                     $total_price = number_format($fetch_cart['price'] * $fetch_cart['quantity']);
+                     $total_price = $fetch_cart['price'] * $fetch_cart['quantity'];
                      $grand_total = $total += $total_price;
                ?>
                      <span><?= $fetch_cart['name']; ?>(<?= $fetch_cart['quantity']; ?>)</span>
@@ -146,7 +146,7 @@ if (isset($_POST['order_btn'])) {
                   echo "<div class='display-order'><span>your cart is empty!</span></div>";
                }
                ?>
-               <span class="grand-total"> grand total : Rs.<?= $grand_total; ?>/- </span>
+               <span class="grand-total"> grand total : Rs.<?php echo number_format($grand_total); ?>/- </span>
             </div>
 
 

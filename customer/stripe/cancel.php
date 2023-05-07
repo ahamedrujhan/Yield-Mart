@@ -3,10 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Payment Success</title>
+  <title>Payment Cancelled</title>
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,900'>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css'>
-  <link rel="stylesheet" href="./payment.css">
+  <link rel="stylesheet" href="./cancel.css">
 
 </head>
 <?php
@@ -19,10 +19,10 @@ session_start();
 
     <div class="card">
 
-      <span class="card__success"><i class="ion-checkmark"></i></span>
+      <span class="card__failed"><i class="ion-close"></i></span>
 
-      <h1 class="card__msg">Payment Complete</h1>
-      <h2 class="card__submsg">Thank you for your transfer</h2>
+      <h1 class="card__msg">Payment Failed</h1>
+      <h2 class="card__submsg">Card Declined</h2>
 
       <div class="card__body">
 
@@ -39,15 +39,13 @@ session_start();
           <img src="https://seeklogo.com/images/V/VISA-logo-F3440F512B-seeklogo.com.png" class="card__credit-card">
           <div class="card__card-details">
             <p class="card__card-type">Credit / debit card</p>
-
           </div>
         </div>
 
       </div>
 
       <div class="card__tags">
-        <span class="card__tag">completed</span>
-
+        <span class="card__tag">Failed</span>
       </div>
 
     </div>

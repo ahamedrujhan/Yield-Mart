@@ -21,11 +21,17 @@ if (isset($_POST['add_to_cart'])) {
    $product_id = $_POST["product_id"];
    $product_quantity = 1;
 
+
+
    $select_cart = mysqli_query($con, "SELECT * FROM `cart` WHERE product_id = '$product_id' AND user_id = '$id'");
 
    if (mysqli_num_rows($select_cart) > 0) {
       $message[] = 'product already added to cart';
    } else {
+
+      $ins = mysqli_query($con, "UPDATE `products` SET quantity= quantity-1 WHERE product_id = '$product_id'");
+      // $get = mysqli_query($con, "SELECT quantity FROM `products` WHERE product_id = '$product_id'");
+      // $qua = mysqli_fetch_assoc($get);
       $insert_product = mysqli_query($con, "INSERT INTO `cart`(name, price, image, quantity,user_id,product_id) VALUES('$product_name', '$product_price', '$product_image', '$product_quantity','$id', '$product_id')");
       $message[] = 'product added to cart succesfully';
    }
