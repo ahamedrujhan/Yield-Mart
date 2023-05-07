@@ -23,6 +23,8 @@ if ($_SESSION['role'] != "Manager") {
     <title>Selling Orders
     </title>
     <div class="main">
+        <!-- back button -->
+        <a href="./mdash.php"><i class="fa-solid fa-circle-arrow-left fa-2xl" style="color: #a6b695; left:5%; position:absolute;top:7%;width:25px;height:25px;" onMouseOver="this.style.color='#669c35'" onMouseOut="this.style.color='#a6b695'"></i></a>
         <div class="head">
             <h1>Orders</h1>
         </div>

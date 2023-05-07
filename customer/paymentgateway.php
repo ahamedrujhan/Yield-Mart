@@ -35,7 +35,12 @@ if ($_SESSION['role'] != "Customer") {
 </style>
 
 <body>
-    <?php include 'header.php'; ?>
+    <?php 
+    
+    
+    include 'header.php';
+    include 'wnavigation.php';
+     ?>
     <div class="container">
 
         <form action="">

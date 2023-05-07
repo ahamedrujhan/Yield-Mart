@@ -9,8 +9,8 @@ if ($_SESSION['role'] != "Customer") {
 //checkout page for customer
 
 @include 'config.php';
-$_SESSION['id'] = 1;
-$sessionId = $_SESSION["id"];
+include 'conn.php';
+$id = $_SESSION['id'];
 if (isset($_POST['order_btn'])) {
 
    $name = $_POST['name'];
@@ -21,7 +21,7 @@ if (isset($_POST['order_btn'])) {
 
 
 
-   $cart_query = mysqli_query($conn, "SELECT * FROM `cart`");
+   $cart_query = mysqli_query($con, "SELECT * FROM `cart` WHERE user_id='$id'");
    $price_total = 0;
    if (mysqli_num_rows($cart_query) > 0) {
       while ($product_item = mysqli_fetch_assoc($cart_query)) {
@@ -30,11 +30,20 @@ if (isset($_POST['order_btn'])) {
          $price_total += $product_price;
       };
    };
-
    $total_product = implode(', ', $product_name);
-   $detail_query = mysqli_query($conn, "INSERT INTO `order`(name, number, method,address, total_products, total_price) VALUES('$name','$number','$method','$address','$total_product','$price_total')") or die('query failed');
+   // "INSERT INTO `orders`(name, number, method, address, total_products, total_price, user_id, status) VALUES('$name','$number','$method','$address','$total_product','$price_total','$id',0)"
+   $_SESSION["amount"] = $price_total;
+   $_SESSION["product"] = $total_product;
+   $_SESSION["name"] = $name;
+   $query = "INSERT INTO `orders`(`name`, `number`, `method`, `address`, `total_products`, `total_price`, `user_id`, `status`) VALUES ('$name','$number','$method','$address','$total_product','$price_total','$id','0')";
+
+
+   $detail_query = mysqli_query($con, $query);
+   print_r($detail_query) or die();
+
 
    if ($cart_query && $detail_query) {
+      mysqli_query($con, "DELETE FROM `cart` WHERE user_id=$id");
       if ($method == "cash on delivery") {
          echo "
       <div class='order-message-container'>
@@ -61,7 +70,14 @@ if (isset($_POST['order_btn'])) {
       </div>
       ";
       } else {
-         header('Location:paymentgateway.php');
+         if ($price_total > 200) {
+
+
+
+            header('Location:./stripe/checkout.php');
+         } else {
+            echo "<script> alert('Total is too low for online payment');</script>";
+         }
       }
    }
 }
@@ -99,7 +115,11 @@ if (isset($_POST['order_btn'])) {
 
 <body>
 
-   <?php include 'header.php'; ?>
+   <?php
+   include 'wnavigation.php';
+
+   // include 'header.php'; 
+   ?>
 
    <div class="container">
 
@@ -111,7 +131,7 @@ if (isset($_POST['order_btn'])) {
 
             <div class="display-order">
                <?php
-               $select_cart = mysqli_query($conn, "SELECT * FROM `cart`");
+               $select_cart = mysqli_query($con, "SELECT * FROM `cart` WHERE user_id='$id'");
                $total = 0;
                $grand_total = 0;
                if (mysqli_num_rows($select_cart) > 0) {
@@ -148,8 +168,8 @@ if (isset($_POST['order_btn'])) {
                   <span>payment method</span>
                   <select name="method">
                      <option value="" selected>Choose payment method</option>
-                     <option value="cash on delivery" name="cash on delivery">Cash on devlivery</option>
                      <option value="credit card" name="credit">Credit/Debit card </option>
+                     <option value="cash on delivery" name="cash on delivery">Cash on devlivery</option>
 
                   </select>
                </div>

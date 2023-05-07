@@ -135,8 +135,8 @@ function del($id)
 </style>
 
 <body>
-    <div class="main">
 
+    <div class="main">
         <?php if (isset($_GET['message'])) {
             $message = $_GET['message'];
         ?>

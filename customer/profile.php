@@ -1,128 +1,153 @@
 <?php
 
-require 'functions.php';
-
-if (!is_logged_in()) {
-	redirect('../index.php');
-}
-
-$id = $_GET['id'] ?? $_SESSION['PROFILE']['id'];
-
-$row = db_query("select * from users where id = :id limit 1", ['id' => $id]);
-
-if ($row) {
-	$row = $row[0];
+session_start();
+include "config.php";
+include "./conn.php";
+if(isset($_SESSION['User_id'])) {
+  $User_id = $_SESSION['User_id'];
 }
 
 ?>
+
+
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Yeild Mart</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-	<!-- custom css file link  -->
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="./css/bootstrap-icons.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Yeild Mart</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+  <link href="profile.css" rel="stylesheet">
+
+	
 </head>
 <style>
-	table {
-		font-size: 15px;
+  table{
+text-align:center;
 
 
-	}
+  }
 
-	.col-md-8 {
-		position: relative;
-		left: 10px;
+tr{
+height: 40px;
+position: relative;
+left:100px;
+}
 
-	}
+a{
 
-	.row {
-		background: rgba(172, 230, 181, 0.5);
-		position: relative;
-		left: 50px;
-		width: 1100px;
-		height: 450px;
+  text-decoration: none;
+}
+.form{
+  position: relative;
 
+    margin-left: 11%;
+    
+    margin-right: 60%;
 
-	}
+    margin-top:-900px;
 
-	.table-striped tr {
-		width: 50%;
-		padding: 5px 15px;
-
-	}
+}
+  
 </style>
-
 <body>
 
 
-	<?php if (!empty($row)) : ?>
-		<?php include 'header.php'; ?>
-		<div class="row col-lg-8 border rounded mx-auto mt-5 p-2 shadow-lg">
-			<div class="col-md-4 text-center">
-				<img src="<?= get_image($row['image']) ?>" class="img-fluid rounded" style="width: 180px;height:180px;object-fit: cover;">
-				<div>
+  <?php
+  include 'wnavigation.php';
 
-					<?php if (user('id') == $row['id']) : ?>
+ 
+?>
 
-						<a href="profile-edit.php">
-							<button class="mx-auto m-1 btn-sm btn btn-primary" style="height:30px;width:150px">Edit</button><br />
-						</a>
-						<a href="profile-delete.php">
-							<button class="mx-auto m-1 btn-sm btn btn-warning text-white" style="height:30px;width:150px;background-color:#942929">Delete</button><br />
-						</a>
-						<a href="index.php">
-							<button class="mx-auto m-1 btn-sm btn btn-info text-white" style="height:30px;width:150px; background-color:#206b44">Logout</button>
-						</a>
-					<?php endif; ?>
-				</div>
-			</div>
-			<div class="col-md-8">
-				<div class="h2">User Profile</div>
-				<table class="table table-striped"><br><br>
-					<tr>
-						<th colspan="2">User Details:</th>
-					</tr>
-					<tr>
-						<th style="padding:5px"><i class="bi bi-envelope"></i> Email</th>
-						<td><?= esc($row['email']) ?></td>
-					</tr>
-					<tr>
-						<th><i class="bi bi-person-circle"></i> First name</th>
-						<td><?= esc($row['firstname']) ?></td>
-					</tr>
-					<tr>
-						<th><i class="bi bi-person-square"></i> Last name</th>
-						<td><?= esc($row['lastname']) ?></td>
-					</tr>
-					<tr>
-						<th><i class="bi bi-house-door-fill"></i> Address</th>
-						<td><?= esc($row['address']) ?></td>
-					</tr>
-					<tr>
-						<th><i class="bi bi-telephone"></i> Phone Number</th>
-						<td><?= esc($row['phone']) ?></td>
-					</tr>
-					<tr>
-						<th><i class="bi bi-gender-ambiguous"></i> Gender</th>
-						<td><?= esc($row['gender']) ?></td>
-					</tr>
+
+  
+     
+    <div class="box">
+    
+      <h2>Wholesaler Profile </h2><hr><br>
+    	<div class="col-md-8">
+        <?php
+if (isset($_SESSION['user_id'])) {
+	$user_id = $_SESSION['user_id'];
+
+			$select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id= $user_id  ");
+  if (mysqli_num_rows($select_user) > 0) {
+     while ($fetch_user = mysqli_fetch_assoc($select_user)) {
+  ?>
+				<table class="table table-striped">
+					<tr><th colspan="2">User Details:<br><br><br></th></tr>
+          <tr><th><i class="fa fa-user-circle"></i>&nbsp; &nbsp; First name : </th><td><?php echo $fetch_user['f_name']?></td></tr>
+          
+					<tr><th><i class="fa fa-user"></i> &nbsp; &nbsp; Last name :</th><td><?php echo$fetch_user['l_name']?></td></tr>
+					<tr><th><i class="fa fa-envelope"></i>&nbsp; &nbsp;  Email :</th><td><?php echo $fetch_user['email']?></td></tr>
+					
+          <tr><th><i class="fa fa-address-book"></i>&nbsp; &nbsp;  Lane 1 :</th><td><?php echo $fetch_user['lane_1']?></td></tr>
+          <tr><th><i class="fa fa-address-card"></i>&nbsp; &nbsp;  Lane 2 :</th><td><?php echo$fetch_user['lane_2']?></td></tr>
+					<tr><th><i class="fa fa-home"></i>&nbsp; &nbsp;  City :</th><td><?php echo$fetch_user['city']?></td></tr>
+
+					<tr><th><i class="fa fa-phone"></i>&nbsp; &nbsp;  Phone Number :</th><td><?php echo$fetch_user['phone']?></td></tr>
+					<tr><th><i class="fa fa-intersex"></i>&nbsp; &nbsp;  Gender :</th><td><?php echo $fetch_user['gender']?></td></tr>
+          <tr><th><i class="fa fa-user"></i>&nbsp; &nbsp;  Role :</th><td><?php echo $fetch_user['role']?></td></tr>
+          
 				</table>
 			</div>
-		</div>
-	<?php else : ?>
-		<div class="text-center alert alert-danger">That profile was not found</div>
-		<a href="index.php">
-			<button class="btn btn-primary m-4">Home</button>
-		</a>
-	<?php endif; ?>
+
+  <br><br>  
+  <?php
+               };
+            };
+          };
+            ?>
+            
+
+    <a href="profile-edit.php"><button class="edit" type ="submit" name="edit" >Edit</button></a>
+    
+    <a href="profile-delete.php"> <button class="delete" onclick="return confirm('Are you sure you want to delete your account?');">Delete</button></a><br>
+    </form>
+    </div>
+    
+    <?php
+    
+    include "uploadimg.php";
+    ?>
+    
+   <script>
+  const togglePassword = document.querySelector('#togglePassword');
+  const password = document.querySelector('#id_password');
+
+  togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+document.getElementById("fileImg").onchange = function(){
+        document.getElementById("image").src = URL.createObjectURL(fileImg.files[0]); // Preview new image
+
+        document.getElementById("cancel").style.display = "block";
+        document.getElementById("confirm").style.display = "block";
+
+        document.getElementById("upload").style.display = "none";
+      }
+
+      var userImage = document.getElementById('image').src;
+      document.getElementById("cancel").onclick = function(){
+        document.getElementById("image").src = userImage; // Back to previous image
+
+        document.getElementById("cancel").style.display = "none";
+        document.getElementById("confirm").style.display = "none";
+
+        document.getElementById("upload").style.display = "block";
+      }
+</script>
+
 
 </body>
-
 </html>
+

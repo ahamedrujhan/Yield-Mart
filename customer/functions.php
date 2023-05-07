@@ -1,6 +1,6 @@
 <?php
 //profile
-session_start();
+
 
 function db_query(string $query, array $data = array())
 {

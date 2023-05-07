@@ -38,6 +38,8 @@ function del($id)
 
 <body>
     <div class="main">
+        <!-- back button -->
+        <a href="./mdash.php"><i class="fa-solid fa-circle-arrow-left fa-2xl" style="color: #a6b695; left:5%; position:absolute;top:7%;width:25px;height:25px;" onMouseOver="this.style.color='#669c35'" onMouseOut="this.style.color='#a6b695'"></i></a>
 
         <?php if (isset($_GET['message'])) {
             $message = $_GET['message'];

@@ -1,5 +1,7 @@
 <?php
 session_start();
+include 'config.php';
+include 'conn.php';
 if ($_SESSION['role'] != "Customer") {
    $url = "./login.php?error=Can't Access!!!";
    header("Location: $url");
@@ -7,26 +9,30 @@ if ($_SESSION['role'] != "Customer") {
 ?>
 <?php
 
-@include 'config.php';
+
+
+$id = $_SESSION['id'];
+
+
 //customer cart page for add or remove things in cart db
 
 if (isset($_POST['update_update_btn'])) {
    $update_value = $_POST['update_quantity'];
    $update_id = $_POST['update_quantity_id'];
-   $update_quantity_query = mysqli_query($conn, "UPDATE `cart` SET quantity = '$update_value' WHERE id = '$update_id'");
+   $update_quantity_query = mysqli_query($con, "UPDATE `cart` SET quantity = '$update_value' WHERE id = '$update_id'");
    if ($update_quantity_query) {
       header('location:cart.php');
    };
 };
 
-if (isset($_GET['remove'])) {
-   $remove_id = $_GET['remove'];
-   mysqli_query($conn, "DELETE FROM `cart` WHERE id = '$remove_id'");
+if (isset($_POST['remove'])) {
+   $remove_id = $_POST['id'];
+   mysqli_query($con, "DELETE FROM `cart` WHERE id = '$remove_id' AND user_id='$id'");
    header('location:cart.php');
 };
 
-if (isset($_GET['delete_all'])) {
-   mysqli_query($conn, "DELETE FROM `cart`");
+if (isset($_POST['removeall'])) {
+   mysqli_query($con, "DELETE FROM `cart` WHERE user_id=$id");
    header('location:cart.php');
 }
 
@@ -64,7 +70,10 @@ if (isset($_GET['delete_all'])) {
 
 <body>
 
-   <?php include 'header.php'; ?>
+   <?php
+   include 'wnavigation.php';
+
+   ?>
 
    <div class="container">
 
@@ -88,7 +97,9 @@ if (isset($_GET['delete_all'])) {
 
                <?php
 
-               $select_cart = mysqli_query($conn, "SELECT * FROM `cart`");
+
+
+               $select_cart = mysqli_query($con, "SELECT * FROM `cart` WHERE user_id=$id");
                $grand_total = 0;
                if (mysqli_num_rows($select_cart) > 0) {
                   while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
@@ -106,7 +117,12 @@ if (isset($_GET['delete_all'])) {
                            </form>
                         </td>
                         <td>Rs.<?php echo $sub_total = number_format($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</td>
-                        <td><a href="cart.php?remove=<?php echo $fetch_cart['id']; ?>" onclick="return confirm('remove item from cart?')" class="delete-btn"> <i class="fas fa-trash"></i> remove</a></td>
+                        <td>
+                           <form action="" method="post">
+                              <input type="hidden" name="id" value="<?php echo $fetch_cart['id']; ?>">
+                              <button type="submit" name="remove" class="delete-btn"> <i class="fas fa-trash"></i>Remove</button>
+                           </form>
+                        </td>
                      </tr>
                <?php
                      $grand_total += $sub_total;
@@ -117,7 +133,11 @@ if (isset($_GET['delete_all'])) {
                   <td><a href="products.php" class="option-btn" style="margin-top: 0;">continue shopping</a></td>
                   <td colspan="3">grand total</td>
                   <td>Rs.<?php echo $grand_total; ?>/-</td>
-                  <td><a href="cart.php?delete_all" onclick="return confirm('are you sure you want to delete all?');" class="delete-btn"> <i class="fas fa-trash"></i> delete all </a></td>
+                  <td>
+                     <form action="" method="post">
+                        <button type="submit" name="removeall" class="delete-btn"> <i class="fas fa-trash"></i>Delete all</button>
+                     </form>
+                  </td>
                </tr>
 
             </tbody>

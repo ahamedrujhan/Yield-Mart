@@ -6,6 +6,6 @@ $dbname = "mart";
 
 // Create connection
 $con = new mysqli($servername, $username, $password, $dbname);
-if (!$conn) {
+if (!$con) {
     echo "Can't Connect to database";
 }

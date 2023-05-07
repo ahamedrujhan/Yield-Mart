@@ -202,14 +202,14 @@ section{
 
 .display-product-table table thead th{
    padding:1.5rem;
-   font-size: 2rem;
+   font-size: 1rem;
    background-color: var(--black);
    color:var(--white);
 }
 
 .display-product-table table td{
    padding:1.5rem;
-   font-size: 2rem;
+   font-size: 1rem;
    color:var(--black);
 }
 

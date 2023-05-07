@@ -27,11 +27,11 @@
             </div>
 
             <ul class="nav-items">
-                <li><a href="#top">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="home.php">Home</a></li>
+                <li><a href="about us.php">About</a></li>
 
                 <li><a href="products.php">Products</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="contact us.php">Contact</a></li>
             </ul>
 
 
@@ -39,8 +39,8 @@
             <div class="icon-links">
 
 
-                <div id="icon-shopping-cart"><span class="icon-cart-arrow-down"><span id="item-counter">0</span></div>
-                <div id="login-or-signup"><span class="icon-user"></div>
+               <div id="icon-shopping-cart"><a href="cart.php"><span class="icon-cart-arrow-down"></a><span id="item-counter">0</span></div>
+                <div id="login-or-signup"> <a href="profile.php"><span class="icon-user"></a></div>
 
                 <div id="customer-center"><span class="bi bi-box-arrow-right" onclick="window.location.href='../logout.php';">LogOut</span></div>
                 <div id="toggle-bar"><span class="toggler"></span></div>
@@ -55,15 +55,7 @@
             <div class="bg-slider bg-slider-3"></div>
         </div>
 
-        <!-- slide button -->
-        <div class="bg-slide-btn">
-            <div class="bg-slide-left">
-                <span class="icon-arrow-left"></span>
-            </div>
-            <div class="bg-slide-right">
-                <span class="icon-arrow-right"></span>
-            </div>
-        </div>
+       
 
         <!-- hero text -->
         <div id="hero">
@@ -83,78 +75,8 @@
 
 
 
-    <!-- top products section start -->
-    <div class="top-products">
-        <div class="section-wrap">
-            <div class="sub-section-title">
-                <p>Top products</p>
-                <a href="products.php">See more <span class="icon-angle-double-right"></span></a>
-            </div>
-
-            <div class="products">
-                <div class="fruit apple">
-                    <div class="fruit-text">
-                        <h2>Pomegranate</h2>
-                        <span>260kg+</span>
-                        <p>Sales</p>
-                    </div>
-                </div>
-                <div class="fruit apple">
-                    <div class="fruit-text">
-                        <h2>Pomegranate</h2>
-                        <span>260kg+</span>
-                        <p>Sales</p>
-                    </div>
-                </div>
-                <div class="fruit papaya">
-                    <div class="fruit-text">
-                        <h2>Papaya</h2>
-                        <span>260kg+</span>
-                        <p>Sales</p>
-                    </div>
-                </div>
-                <div class="fruit carrot">
-                    <div class="fruit-text">
-                        <h2>Carrot</h2>
-                        <span>260kg+</span>
-                        <p>Sales</p>
-                    </div>
-                </div>
-                <div class="fruit banana">
-                    <div class="fruit-text">
-                        <h2>Banana</h2>
-                        <span>260kg+</span>
-                        <p>Sales</p>
-                    </div>
-                </div>
-
-                <div class="fruit mango">
-                    <div class="fruit-text">
-                        <h2>Mango</h2>
-                        <span>180kg+</span>
-                        <p>Sales</p>
-                    </div>
-                </div>
-
-                <div class="fruit peach">
-                    <div class="fruit-text">
-                        <h2>Pine Apple</h2>
-                        <span>220kg+</span>
-                        <p>Sales</p>
-                    </div>
-                </div>
-
-                <div class="fruit beatroot">
-                    <div class="fruit-text">
-                        <h2>Beatroot</h2>
-                        <span>280kg+</span>
-                        <p>Sales</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- top products section end -->
+    
+          
 
 
 
@@ -162,216 +84,8 @@
 
 
 
-    <!-- shopping cart area start -->
-    <!-- /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ -->
-    <!-- selected and favorite product items area start -->
-    <div class="shopping-cart-area" id="product-cart-area">
-        <div class="shopping-cart-wrap">
-            <div class="product-cart-menu">
-                <div class="cart-menu-items">
-                    <h2 id="selected-products" class="active-cart-menu">Selected Products</h2>
-                    <h2 id="favorite-products">Favorite Products</h2>
-                </div>
-
-                <div class="cart-close-btn">
-                    <button>Close Cart</button>
-                </div>
-            </div>
-
-            <div class="cart-contents-header">
-                <div class="total-cart-items">
-                    <p id="total-selected" class="active-product-counter">
-                        <strong>Total Selected: </strong>
-                        <span>No item found</span>
-                    </p>
-                    <p id="total-favorite">
-                        <strong>Total Favorite: </strong>
-                        <span>No item found</span>
-                    </p>
-                </div>
-
-                <div class="buying-product-title">
-                    <div class="total-buying-item">
-                        <p>
-                            <strong>Total Buying Items: </strong>
-                            <span id="total-buying-item-counter">0</span>
-                        </p>
-                    </div>
-                    <div class="buy-items-button">
-                        <button id="buy-items">Buy Items</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cart-contents-area shopping-cart-contents-area active-cart-content">
-                <!-- selected product contents -->
-            </div>
-            <div class="cart-wishlist-area shopping-cart-contents-area">
-                <!-- favorite product contents -->
-            </div>
-
-        </div>
-
-    </div>
-    <!-- selected and favorite product items area end -->
-
-
-
-    <!-- confirmation message area start -->
-    <div class="remove-confirmation-message">
-        <div class="remove-message-wrap">
-            <div class="remove-message-title">
-                <h2>Remove item confirmation message</h2>
-            </div>
-
-            <div class="remove-message-button">
-                <button id="remove-confirm-btn">Remove</button>
-                <button id="remove-cancel-btn">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="popup-shadow"></div>
-    <!-- confirmation message area end -->
-
-
-
-    <!-- buying details/shoping cart area start -->
-    <div class="buying-details-area">
-        <div class="buying-details-wrap">
-            <div class="shop-title">
-                <h1>Shopping Cart</h1>
-            </div>
-
-            <div class="shopping-details-wrap">
-                <div class="shopping-details-header">
-                    <div class="shopping-details">
-                        <div class="shop-detail product-sl">
-                            <h2>SL No.</h2>
-                        </div>
-                        <div class="shop-detail product-name">
-                            <h2>Product Name</h2>
-                        </div>
-                        <div class="shop-detail regular-price">
-                            <h2>Regular Price</h2>
-                        </div>
-                        <div class="shop-detail discount">
-                            <h2>Discount</h2>
-                        </div>
-                        <div class="shop-detail present-price">
-                            <h2>Present Price</h2>
-                        </div>
-                        <div class="shop-detail product-quantity">
-                            <h2>Quantity</h2>
-                        </div>
-                        <div class="shop-detail total-amount">
-                            <h2>Total Price</h2>
-                        </div>
-                        <div class="shop-detail remove-all-btn">
-                            <button id="remove-all-items">Remove All</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="shopping-details-content">
-                    <!-- shopping details content -->
-                </div>
-            </div>
-
-            <div class="buying-details-footer">
-                <div class="calculate-buying-details">
-                    <div class="calculate-total-items">
-                        <h2>Total Items: </h2>
-                        <p><span>000</span></p>
-                    </div>
-
-                    <div class="calculate-total-quantity">
-                        <h2>Total Quantity: </h2>
-                        <p>total quantity display here</p>
-                    </div>
-
-                    <div class="calculate-total-amount">
-                        <h2>Total Amount: </h2>
-                        <p><span>000</span> Tk.</p>
-                    </div>
-                </div>
-
-                <div class="confirm-order-button">
-                    <button id="confirm-order-btn">Confirm Order</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="close-buy-area">
-            <div id="close-buy-area-btn"></div>
-        </div>
-    </div>
-    <!-- buying details/shoping cart area end -->
-    <!-- /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ -->
-    <!-- shopping cart area end -->
-
-
-
-
-
-    <!-- timer section start -->
-    <div class="hot-deals" id="about">
-        <div class="section-wrap">
-            <div class="hot-deals-title">
-                <h1>About Us</h1>
-            </div>
-            <p class="p">Overall result of this project is to deliver a working, reliable and secure web based system for
-                farmers and wholesalers to connect the economic centers.</p>
-            <div class="countdown-wrap">
-                <div class="timer">
-                    <div class="timer-bg"></div>
-                    <div class="counter">
-                        <h1 id="day">MISSION</h1>
-                        <p>This system's primary goal is to link all farmers (from small-scale to large-scale) with
-                            wholesalers and retailers in order to empower the farmers by giving them a target
-                            market and increase the efficiency of Sri Lankan agriculture.
-                            To stop unnecessary cultivation of crops
-                            To reduce wastage of crops.
-                            Reduce the excessive buying power of intermediate dealers and price bargaining with
-                            the farmers.</p>
-                    </div>
-                </div>
-
-                <div class="timer">
-                    <div class="timer-bg"></div>
-                    <div class="counter">
-                        <h1 id="hour">VISSION</h1>
-                        <p>This system's primary goal is to link all farmers (from small-scale to large-scale) with
-                            wholesalers and retailers in order to empower the farmers by giving them a target
-                            market and increase the efficiency of Sri Lankan agriculture.
-                            To stop unnecessary cultivation of crops
-                            To reduce wastage of crops.
-                            Reduce the excessive buying power of intermediate dealers and price bargaining with
-                            the farmers.</p>
-                    </div>
-                </div>
-
-                <div class="timer">
-                    <div class="timer-bg"></div>
-                    <div class="counter">
-                        <h1 id="minute">ACHIEVEMENTS</h1>
-                        <p>This system's primary goal is to link all farmers (from small-scale to large-scale) with
-                            wholesalers and retailers in order to empower the farmers by giving them a target
-                            market and increase the efficiency of Sri Lankan agriculture.
-                            To stop unnecessary cultivation of crops
-                            To reduce wastage of crops.
-                            Reduce the excessive buying power of intermediate dealers and price bargaining with
-                            the farmers.</p>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-    </div>
-    <!-- timer section end -->
-
+    
+              
 
 
 
@@ -421,25 +135,7 @@
                     </div>
                 </div>
 
-                <div class="review-content">
-                    <div class="customer-info">
-                        <div class="customer-image">
-                            <img src="img/customers/customer_3.jpg" alt="review1">
-                        </div>
-                        <div class="customer-details">
-                            <h2 class="name">Nihal Zoysa</h2>
-                            <p class="country">Anuradapura</p>
-                        </div>
-                    </div>
-
-                    <div class="review-text">
-                        <p class="review"><span class="icon-quote-left"></span>Great food quality with low cost.
-                            fresh vegetables and fruits undder one roof.
-                            good customer careGreat food quality with low cost.
-                            fresh vegetables and fruits undder one roof.good customer careFast delivery.Great food quality with low cost.
-                            fresh vegetables and fruits undder one roof.good customer care<span class="icon-quote-right"></span></p>
-                    </div>
-                </div>
+               
 
                 <div class="review-content">
                     <div class="customer-info">
@@ -471,67 +167,7 @@
 
 
 
-        <!-- contact section start -->
-        <div class="contact-section" id="contact">
-            <div class="image-area"></div>
-            <div class="form-area">
-                <div class="form-wrap">
-                    <div class="title">
-                        <h1>Contact Us</h1>
-                    </div>
-
-                    <div class="contact-area">
-                        <div class="contact-info">
-                            <h2>Information</h2>
-                            <div class="contact-address">
-                                <span class="icon-map-marked-alt"></span>
-                                <p>127,Poorwarama Road,Sibel,Colombo 03<br>
-                                </p>
-                            </div>
-
-                            <div class="contact-mail">
-                                <span class="icon-envelope"></span>
-                                <p>aaa@gmail.com</p>
-                            </div>
-
-                            <div class="contact-phone">
-                                <span class="icon-phone-alt"></span>
-                                <p>+94 012-345-6789</p>
-                            </div>
-                        </div>
-
-                        <form class="contact-form">
-                            <div class="name-field">
-                                <div class="input-area">
-                                    <input type="text" id="fname" autocomplete="off" required>
-                                    <label for="fname">First Name</label>
-                                </div>
-
-                                <div class="input-area">
-                                    <input type="text" id="lname" autocomplete="off" required>
-                                    <label for="lname">Last Name</label>
-                                </div>
-                            </div>
-
-                            <div class="input-area">
-                                <input type="email" id="email" autocomplete="off" required>
-                                <label for="email">Email</label>
-                            </div>
-
-                            <div class="message-area">
-                                <textarea id="message" required></textarea>
-                                <label for="message">Message</label>
-                            </div>
-
-                            <div class="btn">
-                                <button type="submit">Send</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- contact section end -->
+       
 
 
 
@@ -594,19 +230,19 @@
                         <div class="footer-menu">
                             <h2>Menu</h2>
                             <div class="fmenu">
-                                <p><a href="#top">Home</a></p>
-                                <p><a href="#about">About</a></p>
+                                <p><a href="home.php">Home</a></p>
+                                <p><a href="about us.php">About</a></p>
 
-                                <p><a href="#products">Products</a></p>
-                                <p><a href="#contact">Contact</a></p>
+                                <p><a href="products.php">Products</a></p>
+                                <p><a href="contact us.php">Contact</a></p>
                             </div>
                         </div>
 
                         <div class="top-products-links">
                             <h2>Top Products</h2>
                             <div class="flinks">
-                                <p><a href="#products">Fresh Fruits </a></p>
-                                <p><a href="#products">Fresh Vegetables</a></p>
+                                <p><a href="products.php">Fresh Fruits </a></p>
+                                <p><a href="products.php">Fresh Vegetables</a></p>
 
                             </div>
                         </div>
@@ -614,11 +250,11 @@
                         <div class="useful-links">
                             <h2>Quick Links</h2>
                             <div class="Qlinks">
-                                <p><a href="#">User Account</a></p>
-                                <p><a href="#">Become An Affilate</a></p>
-                                <p><a href="#">New Offer</a></p>
-                                <p><a href="#">Recent Blogs</a></p>
-                                <p><a href="#">Help</a></p>
+                                <p>User Account</p>
+                                <p>Become An Affilate</a></p>
+                                <p>New Offer</p>
+                                <p>Recent Blogs</p>
+                                <p>Help</p>
                             </div>
                         </div>
 

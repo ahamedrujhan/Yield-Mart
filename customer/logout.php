@@ -1,8 +1,5 @@
-<?php 
-
-require 'functions.php';
-
+<?php
+session_start();
+session_unset();
 session_destroy();
-unset($_SESSION['PROFILE']);
-
-redirect("index.php");
+header("Location: index.php");
