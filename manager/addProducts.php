@@ -103,6 +103,13 @@ function del($id)
 
     }
 
+    #price {
+        width: auto;
+        height: 2.5rem;
+
+
+    }
+
     #img-popup {
         height: 20rem;
         width: 20rem;
@@ -111,6 +118,18 @@ function del($id)
     }
 
     input[name="que"] {
+        width: 20%;
+        border: 2px solid #aaa;
+        border-radius: 4px;
+        margin: 8px 0;
+        outline: none;
+        padding: 8px;
+        box-sizing: border-box;
+        transition: .3s;
+        font-size: medium;
+    }
+
+    input[name="pri"] {
         width: 20%;
         border: 2px solid #aaa;
         border-radius: 4px;
@@ -175,17 +194,17 @@ function del($id)
                         <p>
                             &nbsp;&nbsp;&nbsp;
                             <img id='img-popup' src="" alt="">
-                        <h3 id='stock_name'></h3>
+                        <h2 id='stock_name' style="text-align: center;"></h2>
                         <p id='quantity'>
                         <h2 style="text-align: center;">Quantity :&nbsp;
                             <input type='number' name="que" placeholder='Quantity' id="qua"></p>
                         </h2>
                         </p>
-                        <p id='price'>
+
                         <h2 style="text-align: center;">Price :&nbsp;
                             <input type='number' name="pri" placeholder='Price' id="pri"></p>
                         </h2>
-                        </p>
+
                         <form method="post">
                             <button id="clickBtn" class="btn" onclick=func() name="update">Update</button>
 
@@ -234,10 +253,14 @@ function del($id)
                                         <form method="POST">
                                             <button class="delete-btn" type="submit" name="del<?php echo $id; ?>"><i class="fas fa-trash"></i>Delete</button>
 
-                                            <!-- <button class="update-btn"><i class="fa-regular fa-pen-to-square"></i>Update</button> -->
+                                            <!-- <button class="update-btn"><i class="fa-regular fa-pen-to-square"
+                                            
+                                            
+                                            ></i>Update</button> -->
                                         </form>
                                         <button class="update-btn" id="clickBtn" onclick="document.getElementById('popup').style.display='block'; 
-                                        document.getElementById('pri').value='<?php echo $row['price'];  ?>'; document.getElementById('img-popup').src='./product_img/<?php echo $row['image']; ?>'; d=<?php echo $row['product_id']; ?>;"><i class="fa-regular fa-pen-to-square"></i>Update</button>
+                                        document.getElementById('pri').value='<?php echo $row['price'];  ?>'; 
+                                        document.getElementById('qua').value='<?php echo $row['quantity'];  ?>';document.getElementById('stock_name').innerHTML='<?php echo $row['name'];  ?>';document.getElementById('img-popup').src='./product_img/<?php echo $row['image']; ?>'; p=<?php echo $row['product_id']; ?>;"><i class="fa-regular fa-pen-to-square"></i>Update</button>
 
 
                                     </td>
@@ -263,13 +286,16 @@ function del($id)
                     closeBtn.addEventListener('click', () => {
                         popup.style.display = 'none';
                         document.cookie = "upqua =" + null;
-                        document.cookie = "Sid =" + null;
+                        document.cookie = "Pid =" + null;
+                        document.cookie = "uppri =" + null;
                     });
 
                     function func() {
-                        i = document.getElementById('qua').value;
-                        document.cookie = "upqua =" + i;
-                        document.cookie = "Sid =" + d;
+                        q = document.getElementById('qua').value;
+                        r = document.getElementById('pri').value;
+                        document.cookie = "uppri =" + r;
+                        document.cookie = "upqua =" + q;
+                        document.cookie = "Pid =" + p;
 
                     }
                 </script>
@@ -343,6 +369,22 @@ function del($id)
                     echo "<script>window.location.href='addProducts.php?message=$message';</script>";
                 }
             }
+        }
+
+        if (isset($_POST["update"])) {
+            $id = $_COOKIE["Pid"];
+            $qua = $_COOKIE["upqua"];
+            $pri = $_COOKIE["uppri"];
+            $update = "UPDATE `products` SET `quantity`=$qua,`price`=$pri WHERE `product_id` = $id";
+            $res = mysqli_query($conn, $update);
+            if ($res == true) {
+                $message1 = "Updated Successfully...";
+                //header("Location:addStocks.php?message=$message1");
+                echo "<script>window.location.href='addProducts.php?message=$message1';</script>";
+                exit();
+            }
+
+            //var_dump($id, $qua, $pri);
         }
 
 

@@ -101,8 +101,8 @@ if ($_SESSION['role'] != "Manager") {
                 <h3>Wholeseller</h3>
                 <button class="c-b" onclick="window.location.href='./addProducts.php';">Product Management</button>
                 <button class="c-b" onclick="window.location.href='./products.php';">Available Products</button>
-                <button class="c-b" onclick="window.location.href='#';">Warehouse</button>
-                <button class="c-b" onclick="window.location.href='./s-orders.php';">Orders</button>
+                <button class="c-b" onclick="window.location.href='./sc-orders.php';">COD-Orders</button>
+                <button class="c-b" onclick="window.location.href='./so-orders.php';">Online-Orders</button>
             </div>
         </div>
         <br><br>

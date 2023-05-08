@@ -179,7 +179,7 @@ function del($id)
                         <p>
                             &nbsp;&nbsp;&nbsp;
                             <img id='img-popup' src="" alt="">
-                        <h3 id='stock_name'></h3>
+                        <h2 id='stock_name' style="text-align: center;"></h2>
                         <p id='quantity'>
                         <h2 style="text-align: center;">Quantity :&nbsp;
                             <input type='number' name="que" placeholder='Quantity' id="qua"></p>
@@ -230,7 +230,7 @@ function del($id)
                                         <form method="POST">
                                             <button class="delete-btn" type="submit" name="del<?php echo $id; ?>"><i class="fas fa-trash"></i>Delete</button>
                                         </form>
-                                        <button class="update-btn" id="clickBtn" onclick="document.getElementById('popup').style.display='block'; document.getElementById('qua').value='<?php echo $row['quantity'];  ?>'; document.getElementById('img-popup').src='../farmer_new/stock_img/<?php echo $row['image']; ?>'; d=<?php echo $row['stock_id']; ?>;"><i class="fa-regular fa-pen-to-square"></i>Update</button>
+                                        <button class="update-btn" id="clickBtn" onclick="document.getElementById('popup').style.display='block'; document.getElementById('qua').value='<?php echo $row['quantity'];  ?>'; document.getElementById('img-popup').src='../farmer_new/stock_img/<?php echo $row['image']; ?>';document.getElementById('stock_name').innerHTML='<?php echo $row['name'];  ?>'; d=<?php echo $row['stock_id']; ?>;"><i class="fa-regular fa-pen-to-square"></i>Update</button>
 
 
 

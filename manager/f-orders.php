@@ -68,7 +68,8 @@ if ($_SESSION['role'] != "Manager") {
 
                     </p>
                     <form method="post">
-
+                        <input type="hidden" name="s_name" value="<?php echo $row["s_name"]; ?>">
+                        <input type="hidden" name="s_qty" value="<?php echo $row["quantity"]; ?>">
                         <button id=c type="submit" name="deliver<?php echo $Rid; ?>"><i class="fa-solid fa-truck"></i> Delivered</button>
                         &nbsp;&nbsp;
                     </form>
@@ -77,6 +78,10 @@ if ($_SESSION['role'] != "Manager") {
                 </div>
         <?php
                 if (isset($_POST["deliver$Rid"])) {
+                    $name = $_POST["s_name"];
+                    $qty = $_POST["s_qty"];
+                    mysqli_query($conn, "UPDATE `products` SET quantity=quantity+$qty WHERE name='$name'");
+                    //var_dump($name, $qty) or die();
                     $sql_4 = "UPDATE `requests` SET `status`=4 WHERE `request_id`=$Rid";
                     $sqlAccept = mysqli_query($conn, $sql_4);
                     header("Location:f-orders.php");
