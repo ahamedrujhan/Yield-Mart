@@ -18,6 +18,9 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+    ?>
     <!-- home section start -->
     <div class="home">
         <!-- navbar -->
@@ -32,6 +35,14 @@
 
                 <li><a href="products.php">Products</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <div style="position: absolute;left: 90%;">
+
+                    <?php if (isset($_SESSION['lname'])) {
+                        $name = $_SESSION['lname'];
+                        echo "$name";
+                    }
+                    ?>
+                </div>
             </ul>
 
 
@@ -42,7 +53,9 @@
                 <div id="icon-shopping-cart"><span class="icon-cart-arrow-down"><span id="item-counter">0</span></div>
                 <div id="login-or-signup"><span class="icon-user"></div>
 
-                <div id="customer-center"><span class="bi bi-box-arrow-right" onclick="window.location.href='./login.php';">LogIn</span></div>
+                <div id="customer-center"><span class="bi bi-box-arrow-right" onclick="">
+
+                    </span></div>
                 <div id="toggle-bar"><span class="toggler"></span></div>
 
             </div>
@@ -72,7 +85,7 @@
             <div class="button">
 
                 <div class="btn">
-                    <a href="products.php">Shop Now</a>
+                    <a href="./customer/products.php">Shop Now</a>
                 </div>
             </div>
         </div>

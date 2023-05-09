@@ -35,7 +35,8 @@ if (isset($_POST['order_btn'])) {
    $_SESSION["amount"] = $price_total;
    $_SESSION["product"] = $total_product;
    $_SESSION["name"] = $name;
-   $query = "INSERT INTO `orders`(`name`, `number`, `method`, `address`, `total_products`, `total_price`, `user_id`, `status`) VALUES ('$name','$number','$method','$address','$total_product','$price_total','$id','0')";
+   $query = "INSERT INTO `orders`(`name`, `number`, `method`, `address`, `total_products`, `total_price`, `user_id`, `status`,`ordered_on`) VALUES ('$name','$number','$method','$address','$total_product','$price_total','$id','0',CURRENT_TIMESTAMP())";
+   //var_dump($_SESSION) or die();
 
 
    $detail_query = mysqli_query($con, $query);

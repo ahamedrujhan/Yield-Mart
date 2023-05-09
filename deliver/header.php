@@ -119,9 +119,9 @@
         <nav>
             <ul>
 
-                <li><a href="home.php">Home</a></li>
-                <li><a href="about us.php">About</a></li>
-                <li><a href="contact us.php">Contact Us</a></li>
+                <li><a href="orders.php">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact Us</a></li>
             </ul>
         </nav>
 

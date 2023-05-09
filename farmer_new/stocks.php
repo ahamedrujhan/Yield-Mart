@@ -181,6 +181,22 @@ include "./conn.php";
       border-color: #ffebcd;
       box-shadow: 0 0 8px 0 #ffebcd;
    }
+
+   input[name="date"] {
+      width: 20%;
+      border: 2px solid #aaa;
+      border-radius: 4px;
+      margin: 8px 0;
+      outline: none;
+      padding: 8px;
+      box-sizing: border-box;
+      transition: .3s;
+   }
+
+   input[name="date"]:focus {
+      border-color: #ffebcd;
+      box-shadow: 0 0 8px 0 #ffebcd;
+   }
 </style>
 
 <body>
@@ -248,8 +264,9 @@ include "./conn.php";
                               <h3>Total = <input type='number' name="total" placeholder='Total' id="tot" readonly></h3>
 
 
-                              <form method="POST">
 
+                              <form method="POST">
+                                 <h3>Delivery date: <input type='date' name="date" id="date" value="<?php echo $date = date("Y-m-d") ?>" min="<?php echo date("Y-m-d") ?>"></h3>
                                  <button class="btn" name="req">Request</button>
                               </form>
                            </div>
@@ -293,6 +310,7 @@ include "./conn.php";
                            document.getElementById("qua").value = null;
                            document.getElementById("pri").value = null;
                            document.getElementById("tot").value = null;
+                           // document.cookie = "date =" + null;
                            document.cookie = "pri =" + null;
                            document.cookie = "qua =" + null;
                            document.cookie = "tot =" + null;
@@ -311,6 +329,7 @@ include "./conn.php";
                            var p = parseInt(document.getElementById("pri").value);
                            var q = parseInt(document.getElementById("qua").value);
                            var result = q * p;
+                           // var d = parseInt(document.getElementById("date").value);
                            document.getElementById('tot').value = result;
                            document.cookie = "pri =" + p;
                            document.cookie = "qua =" + q;
@@ -318,6 +337,7 @@ include "./conn.php";
                            document.cookie = "s_name =" + n;
                            document.cookie = "s_id =" + i;
                            document.cookie = "quantity =" + qu;
+                           // document.cookie = "date =" + d;
                         }
 
                         // popup.addEventListener('click', () => {
@@ -344,10 +364,11 @@ include "./conn.php";
             $s_id = $_COOKIE["s_id"];
             $s_name = $_COOKIE["s_name"];
             $quantity = $_COOKIE["quantity"];
+            $date = $_POST["date"];
             //var_dump($quantity);
             // $sql_request = "INSERT INTO 'requests'(farmer_id, stock_id, quantity, price, f_name, total, s_name,status) VALUES ('$f_id','$s_id', '$que', '$pri', '$f_name', '$tot', '$s_name', '0')";
             if ($quantity >= $que) {
-               $sql_request = "INSERT INTO `requests`(`farmer_id`, `stock_id`, `quantity`, `price`, `f_name`, `total`, `s_name`, `status`) VALUES ('$f_id','$s_id','$que','$pri','$f_name','$tot','$s_name','0')";
+               $sql_request = "INSERT INTO `requests`(`farmer_id`, `stock_id`, `quantity`, `price`, `f_name`, `total`, `s_name`, `status`,`requested_on`, `handovered_on` ) VALUES ('$f_id','$s_id','$que','$pri','$f_name','$tot','$s_name','0',now(), '$date')";
                $result_request = mysqli_query($con, $sql_request)  or die("query failed");
                unset($_POST);
                $_POST = array();

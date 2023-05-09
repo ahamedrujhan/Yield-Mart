@@ -7,7 +7,7 @@ $sqlRequestView_4 = "SELECT * FROM `requests` WHERE status=4"; //Delivered
 <?php
 session_start();
 if ($_SESSION['role'] != "Manager") {
-    $url = "./login.php?error=Can't Access!!!";
+    $url = "../login.php?error=Can't Access!!!";
     header("Location: $url");
 }
 ?>
@@ -63,8 +63,12 @@ if ($_SESSION['role'] != "Manager") {
                         &nbsp;Price: <b><?php echo $row["price"]; ?></b>
                     </p>
                     <p id=s>
-                        <br>
+
                         &nbsp;Total: <b><?php echo $row["total"]; ?></b>
+                        <br>
+                        &nbsp;Requested on: <b><?php echo $row["requested_on"]; ?></b>
+                        <br>
+                        &nbsp;Handover on: <b><?php echo $row["handovered_on"]; ?></b>
 
                     </p>
                     <form method="post">
@@ -122,8 +126,12 @@ if ($_SESSION['role'] != "Manager") {
                         &nbsp;Price: <b><?php echo $row["price"]; ?></b>
                     </p>
                     <p id=s>
-                        <br>
+
                         &nbsp;Total: <b><?php echo $row["total"]; ?></b>
+                        <br>
+                        &nbsp;Requested on: <b><?php echo $row["requested_on"]; ?></b>
+                        <br>
+                        &nbsp;Handover on: <b><?php echo $row["handovered_on"]; ?></b>
 
                     </p>
                     <p id=a><i class="fa-solid fa-thumbs-up"></i> Finished</p>&nbsp;&nbsp;

@@ -251,7 +251,7 @@ $row_count = mysqli_num_rows($select_rows);
 
     <ul class="nav-items">
         <li><a href="home.php">Home</a></li>
-        <li><a href="home.php">About</a></li>
+        <li><a href="./orders_f.php">Orders</a></li>
 
         <li><a href="stocks.php">Stocks</a></li>
         <li><a href="home.php">Contact</a></li>
@@ -264,8 +264,8 @@ $row_count = mysqli_num_rows($select_rows);
 
 
 
-        <div id="login-or-signup"><a href="profile.php"><i class="fa fa-user" aria-hidden="true"></i>
-        </div>
+        <!-- <div id="login-or-signup"><a href="profile.php"><i class="fa fa-user" aria-hidden="true"></i>
+        </div> -->
 
 
         <div id="customer-center"><a href="../logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>

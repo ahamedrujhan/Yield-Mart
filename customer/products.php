@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['role'] != "Customer") {
-   $url = "../login.php?error=Can't Access!!!";
+   $url = "../login.php";
    header("Location: $url");
 }
 ?>
@@ -41,7 +41,7 @@ if (isset($_GET["func"])) {
    $connect = mysqli_connect('localhost', 'root', '', 'mart') or die('connection failed');
    $sq = "DELETE FROM cart WHERE user_id='$id';";
    $result = mysqli_query($connect, $sq);
-   $url = "./home.php";
+   $url = "../index.php";
    header("Location: $url");
 }
 

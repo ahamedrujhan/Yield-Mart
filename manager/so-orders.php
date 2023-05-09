@@ -9,9 +9,10 @@ if ($_SESSION['role'] != "Manager") {
     $url = "../login.php?error=Can't Access!!!";
     header("Location: $url");
 }
-$sql0 = "SELECT * FROM `orders` WHERE method='credit card' AND STATUS=0"; //accept or reject
-$sql3 = "SELECT * FROM `orders` WHERE method='credit card' AND STATUS=3"; //finished online
-$sql4 = "SELECT * FROM `orders` WHERE method='credit card' AND STATUS=4"; //rejected online
+$sql0 = "SELECT * FROM `orders` WHERE method='credit card' AND STATUS=0 AND total_price>200"; //accept or reject
+$sql1 = "SELECT * FROM `orders` WHERE method='credit card' AND STATUS=1"; //inprocess
+$sql2 = "SELECT * FROM `orders` WHERE method='credit card' AND STATUS=4"; //rejected
+$sql3 = "SELECT * FROM `orders` WHERE method='credit card' AND STATUS=3"; //delivered
 ?>
 
 <head>
@@ -39,7 +40,7 @@ $sql4 = "SELECT * FROM `orders` WHERE method='credit card' AND STATUS=4"; //reje
         if (mysqli_num_rows($sqlRequestViewResult) > 0) {
             while ($row = mysqli_fetch_assoc($sqlRequestViewResult)) {
 
-                $Rid = $row["order_id"];
+                $Oid = $row["order_id"];
 
         ?>
                 <br>
@@ -53,94 +54,153 @@ $sql4 = "SELECT * FROM `orders` WHERE method='credit card' AND STATUS=4"; //reje
                     </p>
                     <p id=s>
                         &nbsp;Products: <b><?php echo $row["total_products"]; ?></b>
+                        <br>
+                        <br>
+                        &nbsp;Ordered on: <b><?php echo $row["ordered_on"]; ?></b>
                     </p>
-                    <p id=c><i class="fa-solid fa-truck"></i> Assign</p>&nbsp;&nbsp;
-                    <button class=reject><i class="fa fa-times" aria-hidden="true"></i> Reject</button>
+                    <form method="post">
+                        <button id=c type="submit" name="assign<?php echo $Oid; ?>"><i class="fa-solid fa-truck"></i> Assign</button>&nbsp;&nbsp;
+                        <button class=reject type="submit" name="reject<?php echo $Oid; ?>"><i class="fa fa-times" aria-hidden="true" type="submit"></i> Reject</button>
+                    </form>
+                </div>
+        <?php if (isset($_POST["assign$Oid"])) {
+                    $sqlRequestaccept = "UPDATE `orders` SET `status`=1 WHERE `order_id`=$Oid";
+                    $sqlAccept = mysqli_query($conn, $sqlRequestaccept);
+                    // var_dump($Rid);
+                    header("Location:so-orders.php");
+                }
+                if (isset($_POST["reject$Oid"])) {
+                    $sqlRequestaccept = "UPDATE `orders` SET `status`=4 WHERE `order_id`=$Oid";
+                    $sqlAccept = mysqli_query($conn, $sqlRequestaccept);
+                    // var_dump($Rid);
+                    header("Location:so-orders.php");
+                }
+            }
+        } else {
+            echo "<br>No more orders <br>";
+        }
+
+        ?>
+        <br>
+        <div class="conformed">
+            <h3>&nbsp;In Process Orders</h3>
+
+        </div>
+
+        <?php
+
+        $sqlRequestViewResult = mysqli_query($conn, $sql1);
+        if (mysqli_num_rows($sqlRequestViewResult) > 0) {
+            while ($row = mysqli_fetch_assoc($sqlRequestViewResult)) {
+
+                $Oid = $row["order_id"];
+
+        ?>
+                <br>
+                <div class="content">
+                    <p id=f>
+                        &nbsp;Customer Id: <b><?php echo $row["user_id"]; ?></b>
+                        <br>
+                        &nbsp;Customer Name: <b><?php echo $row["name"]; ?></b>
+                        <br>
+                        &nbsp;Total= <b><?php echo $row["total_price"]; ?></b>
+                    </p>
+                    <p id=s>
+                        &nbsp;Products: <b><?php echo $row["total_products"]; ?></b>
+                        <br>
+                        <br>
+                        &nbsp;Ordered on: <b><?php echo $row["ordered_on"]; ?></b>
+                    </p>
+                    <!-- <p id=a><i class="fa-solid fa-thumbs-up"></i> Finished</p>&nbsp;&nbsp; -->
+                    <p id=c><i class="fa-solid fa-truck"></i> In Process</p>&nbsp;&nbsp;
 
                 </div>
         <?php }
+        } else {
+            echo "<br>No more orders <br>";
         }
         ?>
-        <br>
-        <div class="content">
-            <p id=f>
-                &nbsp;Customer Id:
-                <br>
-                &nbsp;Customer Name:
-                <br>
-                &nbsp;Total=
-            </p>
-            <p id=s>
-                &nbsp;Products:
-            </p>
-            <p id=c><i class="fa-solid fa-truck"></i> Assign</p>&nbsp;&nbsp;
-            <button class=reject><i class="fa fa-times" aria-hidden="true"></i> Reject</button>
-
-        </div>
-        <br>
         <div class="conformed">
-            <h3>&nbsp;Finished Orders</h3>
+            <h3>&nbsp;Delivered Orders</h3>
 
         </div>
 
-        <br>
-        <div class="conform">
-            <div class="content">
-                <p id=f>
-                    &nbsp;Customer Id:
-                    <br>
-                    &nbsp;Customer Name:
-                    <br>
-                    &nbsp;Total=
-                </p>
-                <p id=s>
-                    &nbsp;Products:
-                </p>
-                <p id=a><i class="fa-solid fa-thumbs-up"></i> Finished</p>&nbsp;&nbsp;
+        <?php
 
-            </div>
-            <br>
-        </div>
+        $sqlRequestViewResult = mysqli_query($conn, $sql3);
+        if (mysqli_num_rows($sqlRequestViewResult) > 0) {
+            while ($row = mysqli_fetch_assoc($sqlRequestViewResult)) {
+
+                // $Oid = $row["order_id"];
+
+        ?>
+                <br>
+                <div class="content">
+                    <p id=f>
+                        &nbsp;Customer Id: <b><?php echo $row["user_id"]; ?></b>
+                        <br>
+                        &nbsp;Customer Name: <b><?php echo $row["name"]; ?></b>
+                        <br>
+                        &nbsp;Total= <b><?php echo $row["total_price"]; ?></b>
+                    </p>
+                    <p id=s>
+                        &nbsp;Products: <b><?php echo $row["total_products"]; ?></b>
+                        <br>
+                        &nbsp;Ordered on: <b><?php echo $row["ordered_on"]; ?></b>
+                        <br>
+                        &nbsp;Delivered on: <b><?php echo $row["delivered_on"]; ?></b>
+                    </p>
+                    <!-- <p id=a><i class="fa-solid fa-thumbs-up"></i> Finished</p>&nbsp;&nbsp; -->
+                    <p id=c><i class="fa-solid fa-truck"></i> Delivered</p>&nbsp;&nbsp;
+                </div>
+
+        <?php }
+        } else {
+            echo "<br>No more orders <br>";
+        } ?>
+
+
         <br>
 
         <div class="conformed">
-            <h3>&nbsp;Canceled Orders</h3>
+            <h3>&nbsp;Rejected Orders</h3>
 
         </div>
 
-        <br>
-        <div class="conform">
-            <div class="content">
-                <p id=f>
-                    &nbsp;Customer Id:
-                    <br>
-                    &nbsp;Customer Name:
-                    <br>
-                    &nbsp;Total=
-                </p>
-                <p id=s>
-                    &nbsp;Products:
-                </p>
-                <p id=r><i class="fa-solid fa-thumbs-down"></i> Rejected</p>&nbsp;&nbsp;
+        <?php
 
-            </div>
-            <div class="content">
-                <p id=f>
-                    &nbsp;Customer Id:
-                    <br>
-                    &nbsp;Customer Name:
-                    <br>
-                    &nbsp;Total=
-                </p>
-                <p id=s>
-                    &nbsp;Products:
-                </p>
-                <p id=r>
-                    <i class="fa-solid fa-thumbs-down"></i> Rejected
-                </p>&nbsp;&nbsp;
+        $sqlRequestViewResult = mysqli_query($conn, $sql2);
+        if (mysqli_num_rows($sqlRequestViewResult) > 0) {
+            while ($row = mysqli_fetch_assoc($sqlRequestViewResult)) {
 
-            </div>
-        </div>
+                $Oid = $row["order_id"];
+
+        ?>
+
+
+                <br>
+                <div class="content">
+                    <p id=f>
+                        &nbsp;Customer Id: <b><?php echo $row["user_id"]; ?></b>
+                        <br>
+                        &nbsp;Customer Name: <b><?php echo $row["name"]; ?></b>
+                        <br>
+                        &nbsp;Total= <b><?php echo $row["total_price"]; ?></b>
+                    </p>
+                    <p id=s>
+                        &nbsp;Products: <b><?php echo $row["total_products"]; ?></b>
+                        <br>
+                        <br>
+                        &nbsp;Ordered on: <b><?php echo $row["ordered_on"]; ?></b>
+                    </p>
+                    <p id=r><i class="fa-solid fa-thumbs-down"></i> Rejected</p>&nbsp;&nbsp;
+
+                </div>
+        <?php
+            }
+        } else {
+            echo "<br>No more orders <br>";
+        } ?>
         <br>
 
         <br><br>

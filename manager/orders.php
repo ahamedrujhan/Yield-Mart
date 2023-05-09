@@ -6,7 +6,7 @@
 <?php
 session_start();
 if ($_SESSION['role'] != "Manager") {
-    $url = "./login.php?error=Can't Access!!!";
+    $url = "../login.php?error=Can't Access!!!";
     header("Location: $url");
 }
 ?>

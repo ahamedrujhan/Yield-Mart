@@ -24,39 +24,49 @@ if (empty($uname)) {
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
+        if ($row["status"] == 0) {
 
 
 
 
 
-        $_SESSION['email'] = $row['email'];
-        $_SESSION['id'] = $row['user_id'];
-        $_SESSION['lname'] = $row['l_name'];
-        $_SESSION['role'] = $row['role'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['id'] = $row['user_id'];
+            $_SESSION['lname'] = $row['l_name'];
+            $_SESSION['role'] = $row['role'];
 
-        if ($row["role"] == "Manager") {
-            $url = "./manager/mdash.php";
-            header("Location: $url");
-        }
-        /*if ($row["role"] == "Farmer") {
+            if ($row["role"] == "Manager") {
+                $url = "./manager/mdash.php";
+                header("Location: $url");
+            }
+            /*if ($row["role"] == "Farmer") {
             $url = "./Farmer/stocks.php";
             header("Location: $url");
         }*/
-        if ($row["role"] == "Farmer") {
-            $url = "./farmer_new/stocks.php";
-            header("Location: $url");
-        }
-        if ($row["role"] == "Admin") {
-            $url = "./admin/admin_home.php";
-            header("Location: $url");
-        }
-        if ($row["role"] == "Customer") {
-            $url = "./customer/home.php";
-            header("Location: $url");
-        }
-        /*$url = "./admin_home.php";
+            if ($row["role"] == "Farmer") {
+                $url = "./farmer_new/home.php";
+                header("Location: $url");
+            }
+            if ($row["role"] == "Admin") {
+                $url = "./admin/admin_home.php";
+                header("Location: $url");
+            }
+            if ($row["role"] == "Customer") {
+                $url = "./index.php";
+                header("Location: $url");
+            }
+            if ($row["role"] == "Deliver") {
+                $url = "./deliver/orders.php";
+                header("Location: $url");
+            }
+            /*$url = "./admin_home.php";
         header("Location: $url");
         */
+        }
+        if ($row["status"] == 1) {
+            header("Location: login.php?error=Admin Blocked Your account");
+            exit();
+        }
     } else {
         header("Location: login.php?error=Incorrect User Name or Password");
         exit();

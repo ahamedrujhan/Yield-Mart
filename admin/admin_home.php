@@ -8,6 +8,16 @@ if ($_SESSION['role'] != "Admin") {
 <?php
 //admin dashboard
 include "./header.php";
+include "./conn.php";
+$sql_f = "SELECT * FROM `users` WHERE role='Farmer'";
+$sql_c = "SELECT * FROM `users` WHERE role='Customer'";
+$sql_m = "SELECT * FROM `users` WHERE role='Manager'";
+$re_f = mysqli_query($conn, $sql_f);
+$re_c = mysqli_query($conn, $sql_c);
+$re_m = mysqli_query($conn, $sql_m);
+$fcount = mysqli_num_rows($re_f);
+$ccount = mysqli_num_rows($re_c);
+$mcount = mysqli_num_rows($re_m);
 ?>
 <html>
 
@@ -28,29 +38,33 @@ include "./header.php";
 
 <body class="pattern">
     <div class="users">
-        <a href="">
+        <a href="./f-control.php">
             <div class="farmers">
                 <P>Farmers
                     <br>
                     <br>
-                <p class=num>20</p>
+                <p class=num><?php echo $fcount ?></p>
                 </P>
             </div>
         </a>
-        <div class="wholesellers">
-            <P>Whole Sellers
-                <br>
-                <br>
-            <p class=num>30</p>
-            </P>
-        </div>
-        <div class="deliver">
-            <P>Deliver
-                <br>
-                <br>
-            <p class=num>5</p>
-            </P>
-        </div>
+        <a href="./c-control.php">
+            <div class="wholesellers">
+                <P>Customers
+                    <br>
+                    <br>
+                <p class=num><?php echo $ccount ?></p>
+                </P>
+            </div>
+        </a>
+        <a href="./m-control.php">
+            <div class="deliver">
+                <P>Manager
+                    <br>
+                    <br>
+                <p class=num><?php echo $mcount ?></p>
+                </P>
+            </div>
+        </a>
 
     </div>
 </body>

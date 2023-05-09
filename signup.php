@@ -1,215 +1,196 @@
-<html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/signup.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <meta charset="UTF-8">
+  <title>Yield Mart Signup</title>
+  <link rel="stylesheet" href="./css/signup.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <?php
-    include "./conn.php";
-    $fnameErr = $lnameErr = $emailErr =  $numErr = $addErr = $pwErr = $cpwErr = "";
-    ?>
-    <title>Signup</title>
-    <div class="main">
-        <!--Navigation bar-->
-        <div class="nav">
-            <a href="">
-                <div>Home</div>
-            </a>
-            <a href="">
-                <div>About</div>
-            </a>
-            <a href="">
-                <div>Contact Us</div>
-            </a>
+  <?php
 
-        </div>
+  if (isset($_GET['message'])) {
+  ?>
+    <div class="message">
+      <?php
+      echo $_GET['message'];
+      ?>
+    </div>
+  <?php
+  }
+  ?>
+  <?php
+  include "./conn.php";
+  $fnameErr = $lnameErr = $emailErr =  $numErr = $addErr = $pwErr = $cpwErr = "";
 
-        <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            //Empty checking....
-            if (empty($_POST["fname"])) {
-                $fnameErr = "First Name is required";
-            }
-            if (empty($_POST["lname"])) {
-                $lnameErr = "Last Name is required";
-            }
-            if (empty($_POST["email"])) {
-                $emailErr = "Email is required";
-            }
-            if (empty($_POST["number"])) {
-                $numErr = "Phone Number is required";
-            }
-            if (empty($_POST["address"])) {
-                $addErr = "Address is required";
-            }
-            if (empty($_POST["pass"])) {
-                $pwErr = "Password is required";
-            }
-            if (empty($_POST["c_pass"])) {
-                $cpwErr = "Confirm Password is required";
-            }
+  ?>
+  <?php
+  if (isset($_POST["signup"])) {
+    $role = $_POST["role"];
+    $fname = $_POST["fname"];
+    $lname = $_POST["lname"];
+    $email = $_POST["email"];
+    $address = $_POST["address"];
+    $gender = $_POST["gender"];
+    $number = $_POST["number"];
+    $password = $_POST["pass"];
+    $c_password = $_POST["c_pass"];
+    $v = TRUE;
+
+    // $sql = "INSERT INTO `users`(`f_name`, `l_name`, `gender`, `phone`, `email`, `address`, `role`, `password`, `created_on`,`status`) VALUES ('$fname','$lname','$gender','$number','$email','$address','$role','$password',now(),0)";
+    $sql = "INSERT INTO `users`(`f_name`, `l_name`, `gender`, `phone`, `email`, `address`, `role`, `password`, `created_on`, `status`) 
+    VALUES ('$fname', '$lname', '$gender', '$number', '$email', '$address', '$role', '$password', NOW(), 0)";
+
+
+    $sql1 = "SELECT * FROM `users` WHERE email = '$email'";
+    if (empty($_POST["fname"])) {
+      $fnameErr = "First Name is required";
+      $v = FALSE;
+    } else {
+      $name = $_POST["fname"];
+      if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
+
+        $fnameErr = "Only letters and white space allowed";
+        $v = FALSE;
+      }
+    }
+    if (empty($_POST["lname"])) {
+      $lnameErr = "Last Name is required";
+      $v = FALSE;
+    }
+    if (empty($_POST["email"])) {
+      $emailErr = "Email is required";
+      $v == FALSE;
+    } else {
+      $email = $_POST["email"];
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+        $emailErr = "The email address is incorrect";
+        $v = FALSE;
+      }
+    }
+    if (empty($_POST["number"])) {
+      $numErr = "Phone Number is required";
+      $v = FALSE;
+    } else {
+      $number = $_POST["number"];
+      $v = FALSE;
+      if (!preg_match('/^[0-9]{10}+$/', $number)) {
+        $v == FALSE;
+        $numErr = "Invalid Phone Number";
+      }
+    }
+    if (empty($_POST["address"])) {
+      $addErr = "Address is required";
+      $v = FALSE;
+    }
+    if (empty($_POST["pass"])) {
+      $pwErr = "Password is required";
+      $v = FALSE;
+    }
+    if (empty($_POST["c_pass"])) {
+      $cpwErr = "Confirm Password is required";
+      $v = FALSE;
+    }
+    $v = TRUE;
+    if ($v == TRUE) {
+      if ($_POST["pass"] === $_POST["c_pass"]) {
+
+        $re1 = mysqli_query($conn, $sql1);
+        $result = mysqli_num_rows($re1);
+        if ($result > 0) {
+          $message = "Email Address is already Exist....";
+          header("Location:signup.php?message=$message");
+        } else {
+          $re1 = mysqli_query($conn, $sql);
+          if ($re1 == true) {
+            header("Location:index.php");
+          }
         }
-        ?>
-        <div class="m_pic"></div>
+      } else {
+        $message = "Passwords not matched....";
+        header("Location:signup.php?message=$message");
+      }
+    }
+  }
+  ?>
+  <form id="container" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
 
+    <h3 id="Heading">Sign Up</h3>
+    <?php
+    // if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //   //Empty checking....
 
-        <!--Green Box-->
-        <div class="right">
+    // }
+    ?>
+    <label>For:</label>
+    <div class="row">
+      <div class="icon"><i class="fa-solid fa-user fa-xl" style="color: #f7f7f7; position: relative;
+        top: 20%;"></i></div>
+      <select name="role" class="gender">
+        <option value="Farmer">Farmer</option>
+        <option value="Customer">Customer</option>
+      </select>
+    </div>
 
-            <div class="form-container">
+    <label>Email:</label><span class="error"><?php echo $emailErr; ?>
+    </span>
+    <div class="row">
+      <div class="icon"><i class="fa-solid fa-envelope fa-xl" style="color: #f7f7f7; position: relative;
+        top: 20%;"></i></div><input name="email" type="email" placeholder="Email" value="<?php echo $_POST["email"]; ?>" required>
+    </div>
+    <div class="row name"><span class="error"><?php echo $fnameErr; ?>
+      </span>
+      <input type="text" placeholder="First Name" name="fname" value="<?php echo $_POST["fname"]; ?> " required><span class="error"><?php echo $lnamelErr; ?>
+      </span>
+      <input type="text" placeholder="Last Name" name="lname" value="<?php echo $_POST["lname"]; ?> " required>
+    </div>
+    <label>Address:</label><span class="error"><?php echo $addErr; ?>
+    </span>
+    <div class="row">
+      <div class="icon"><i class="fa-solid fa-location-dot fa-xl" style="color: #f7f7f7; position: relative;
+        top: 20%;"></i></div><input type="text" placeholder="Address" name="address" value="<?php echo $_POST["address"]; ?>" minlength="10" required>
+    </div>
+    <label>Phone:</label><span class="error"><?php echo $numErr; ?>
+    </span>
+    <div class="row">
+      <div class="icon"><i class="fa-solid fa-phone fa-xl" style="color: #f7f7f7; position: relative;
+        top: 20%;"></i></div><input name="number" type="number" placeholder="Phone Number" value="<?php echo $_POST["number"]; ?>" required>
+    </div>
+    <label>Gender:</label>
+    <div class="row">
+      <div class="icon"><i class="fa-solid fa-user fa-xl" style="color: #f7f7f7; position: relative;
+        top: 20%;"></i></div>
+      <select name="gender" class="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+    <label>Password:</label><span class="error"><?php echo $pwErr; ?>
+    </span>
+    <div class="row">
 
-                <form class="form-inner-container" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+      <div class="icon"><i class="fa-solid fa-key fa-xl" style="color: #f7f7f7; position: relative;
+        top: 20%;"></i></div><input type="password" placeholder="Password" name="pass" minlength="8" maxlength="12" required>
+    </div>
+    <label>Confirm Password:</label><span class="error"><?php echo $cpwErr; ?>
+    </span>
+    <div class="row">
 
-                    <?php
-                    if (isset($_GET['message'])) {
-                    ?>
-                        <div class="message">
-                            <?php
-                            echo $_GET['message'];
-                            ?>
-                        </div>
-                    <?php
-                    }
-                    ?>
-
-                    <div class=" field">
-                        <label>First Name
-
-                        </label>
-                        <span class="error">*<?php echo $fnameErr; ?>
-                        </span>
-                        <input type="text" name="fname" value="<?php echo $_POST['fname'] ?? ''; ?>">
-                    </div>
-                    <div class="field">
-                        <label>Last Name</label>
-                        <span class="error">*<?php echo $lnameErr; ?>
-                        </span>
-                        <input type="text" name="lname" value="<?php echo $_POST['lname'] ?? ''; ?>">
-                    </div>
-                    <div class="field">
-                        <label>Email</label>
-                        <span class="error">*<?php echo $emailErr; ?>
-                        </span>
-                        <input type="email" name="email" value="<?php echo $_POST['email'] ?? ''; ?>">
-                    </div>
-                    <div class="field">
-                        <label>Phone</label>
-                        <span class="error">*<?php echo $numErr; ?>
-                        </span>
-                        <input type="text" name="number" pattern="[0-9]{9}" title="Enter 9 Digit Number" value="<?php echo $_POST['number'] ?? ''; ?>">
-                    </div>
-                    <div class="field">
-                        <label>Role</label>
-                        <select name="role">
-                            <option value="Farmer">Farmer</option>
-                            <option value="Customer">Customer</option>
-                        </select>
-                    </div>
-                    <div class="field">
-                        <label>Gender</label>
-                        <select name="gender">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </div>
-                    <div class="field">
-                        <label>Street 1</label>
-                        <span class="error">*<?php echo $addErr; ?>
-                        </span>
-                        <input type="text" name="st1" value="<?php echo $_POST['st1'] ?? ''; ?>">
-                    </div>
-                    <div class="field">
-                        <label>Street 2</label>
-                        </span>
-                        <input type="text" name="st2" value="<?php echo $_POST['st2'] ?? ''; ?>">
-                    </div>
-                    <div class="field">
-                        <label>City</label>
-                        <span class="error">*<?php echo $addErr; ?>
-                        </span>
-                        <input type="text" name="city" value="<?php echo $_POST['city'] ?? ''; ?>">
-                    </div>
-                    <div class="field">
-                        <label>Password</label>
-                        <span class="error">*<?php echo $pwErr; ?>
-                        </span>
-                        <input type="password" name="pass">
-
-                    </div>
-                    <div class="field">
-                        <label>Confirm
-                            <br>Password</label>
-                        <span class="error">*<?php echo $cpwErr; ?>
-                        </span>
-                        <input type="password" name="c_pass">
-
-                    </div>
-                    <br>
-                    <div>
-
-                        <input class="signup" type="submit" value="Create Account">
-
-                    </div>
-
-
-
-
-
-
-
-                </form>
-            </div>
-
-
-        </div>
-
+      <div class="icon"><i class="fa-solid fa-key fa-xl" style="color: #f7f7f7; position: relative;
+        top: 20%;"></i></div><input type="password" placeholder="Confirm Password" name="c_pass" minlength="8" maxlength="12" required>
     </div>
 
 
+    <button type="submit" name="signup">Sign up</button>
+    <span>
+      <span>Already have Account <a href="./login.php"> Log In</a></span></span>
+  </form>
+  <!-- partial -->
+
 </body>
-<?php
-$fname = $_POST["fname"];
-$lname = $_POST["lname"];
-$email = $_POST["email"];
-$num = $_POST["number"];
-$gender = $_POST["gender"];
-$role = $_POST["role"];
-$st1 = $_POST["st1"];
-$st2 = $_POST["st2"];
-$city = $_POST["city"];
-$pw = $_POST["pass"];
 
-$sql = "INSERT INTO  users (f_name, l_name, email, phone, gender,lane_1,lane_2,city, role, password) VALUES ('$fname', '$lname', '$email', '$num', '$gender', '$st1','$st2','$city', '$role', '$pw')";
-$sql1 = "SELECT email FROM user WHERE email='$email'";
-
-
-
-if (!empty($fname) && !empty($lname) && !empty($email) && !empty($num) && !empty($gender) && !empty($address) && !empty($pw)) {
-    $result1 = mysqli_query($conn, $sql1);
-
-    $row = mysqli_fetch_assoc($result1);
-    if ($row["email"] == $email) {
-        header("location:./signup.php?message=Email address is already exists");
-        exit();
-    } else {
-        $result = mysqli_query($conn, $sql);
-        if ($result == TRUE) {
-            echo "<script>alert('Account Created Successfully')</script>";
-            header("location:./login.php");
-            exit();
-        }
-    }
-}
-
-
-
-
-?>
 
 </html>

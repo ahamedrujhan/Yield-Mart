@@ -306,48 +306,34 @@
     <ul class="nav-list">
 
       <li>
-        <a href="../index.php">
+        <a href="orders.php">
           <i class='bx bx-grid-alt'></i>
-          <span class="links_name">Home</span>
+          <span class="links_name">Dashboard</span>
         </a>
-        <span class="tooltip">Home</span>
-      </li><br>
+        <span class="tooltip">Dashboard</span>
+      </li>
+
       <li>
-        <a href="products.php">
-          <i class="bx bx-grid-horizontal"></i>
-          <span class="links_name">Products</span>
-        </a>
-        <span class="tooltip">Products</span>
-      </li><br>
-      <li>
-        <a href="profile.php">
-          <i class='bx bx-user '></i>
-          <span class="links_name">Profile</span>
-        </a>
-        <span class="tooltip">Profile</span>
-      </li><br>
-      <li>
-        <a href="cart.php">
-          <i class='bx bxs-cart-alt'></i>
-          <span class="links_name">Cart</span>
-        </a>
-        <span class="tooltip">Cart</span>
-      </li><br>
-      <li>
-        <a href="cashorder.php">
-          <i class='bx bxs-checkbox'></i>
+        <a href="orders.php">
+          <i class='bx bx-grid-horizontal '></i>
           <span class="links_name">Orders</span>
         </a>
         <span class="tooltip">Orders</span>
-      </li><br>
-      <li>
-        <a href="email.php">
-          <i class='bx bx-envelope'></i>
-          <span class="links_name">Notifications</span>
-        </a>
-        <span class="tooltip">Notifications</span>
       </li>
-      <br>
+      <!-- <li>
+         <a href="statusnew.php">
+          <i class='bx bxs-cog'></i>
+          <span class="links_name">Delivery Status</span>
+        </a>
+        <span class="tooltip">Delivery Status</span> 
+      </li> -->
+      <!-- <li>
+         <a href="history.php">
+          <i class='bx bxs-checkbox'></i>
+          <span class="links_name">Delivery History</span>
+        </a>
+        <span class="tooltip">Delivery History</span> 
+      </li> -->
       <li>
         <a href="../logout.php">
           <i class="bx bx-arrow-from-left"></i>

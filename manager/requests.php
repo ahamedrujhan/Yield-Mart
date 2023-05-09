@@ -60,8 +60,12 @@ $f_id = $_SESSION["id"];
                         &nbsp;Price: <b><?php echo $row["price"]; ?></b>
                     </p>
                     <p id=s>
-                        <br>
+
                         &nbsp;Total: <b><?php echo $row["total"]; ?></b>
+                        <br>
+                        &nbsp;Requested on: <b><?php echo $row["requested_on"]; ?></b>
+                        <br>
+                        &nbsp;Handover on: <b><?php echo $row["handovered_on"]; ?></b>
 
 
                     </p>
@@ -123,8 +127,12 @@ $f_id = $_SESSION["id"];
                         &nbsp;Price: <b><?php echo $row["price"]; ?></b>
                     </p>
                     <p id=s>
-                        <br>
+
                         &nbsp;Total: <b><?php echo $row["total"]; ?></b>
+                        <br>
+                        &nbsp;Requested on: <b><?php echo $row["requested_on"]; ?></b>
+                        <br>
+                        &nbsp;Handover on: <b><?php echo $row["handovered_on"]; ?></b>
 
                     </p>
                     <p id=c><i class="fa fa-clock-o" aria-hidden="true"></i>Waiting</p>&nbsp;&nbsp;
@@ -169,8 +177,10 @@ $f_id = $_SESSION["id"];
                         &nbsp;Price: <b><?php echo $row["price"]; ?></b>
                     </p>
                     <p id=s>
-                        <br>
+
                         &nbsp;Total: <b><?php echo $row["total"]; ?></b>
+                        <br>
+                        &nbsp;Requested on: <b><?php echo $row["requested_on"]; ?></b>
 
                     </p>
                     <p id=b><i class="fa fa-times" aria-hidden="true"></i>Rejected</p>&nbsp;&nbsp;

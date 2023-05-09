@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--Home page-->
+<?php
+session_start();
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -33,16 +36,24 @@
                 <li><a href="stocks.php"> Stocks </a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div style="position: absolute;left: 81%;">
 
+                <?php if (isset($_SESSION['lname'])) {
+                    $name = $_SESSION['lname'];
+                    echo "$name";
+                }
+                ?>
+            </div>
 
 
             <div class="icon-links">
 
 
-                <div id="icon-shopping-cart"><span class="icon-cart-arrow-down"><span id="item-counter">0</span></div>
+                <!-- <div id="icon-shopping-cart"><span class="icon-cart-arrow-down"><span id="item-counter">0</span></div> -->
                 <div id="login-or-signup"><span class="icon-user"></div>
-
-                <div id="customer-center"><span class="bi bi-box-arrow-right">LogOut</span></div>
+                <a href="../logout.php">
+                    <div id="customer-center"><span class="bi bi-box-arrow-right">LogOut</span></div>
+                </a>
                 <div id="toggle-bar"><span class="toggler"></span></div>
 
             </div>
