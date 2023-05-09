@@ -38,9 +38,13 @@ if ($_SESSION['role'] != "Manager") {
 
                     <div class="card">
                         <img src="./product_img/<?php echo $row['image']; ?>">
-                        <p><?php echo $row['name']; ?></p>
-                        <p>Available: <?php echo $row['quantity']; ?></p>
-                        <p>Price: <?php echo $row['price']; ?>/=</p>
+                        <?php echo $row['name']; ?>
+                        <br>
+                        Available: <?php echo $row['quantity']; ?>
+                        <br>
+
+                        Price: <?php echo $row['price']; ?>/=
+
                     </div>
             <?php }
             }

@@ -148,9 +148,9 @@ function del($id)
 
 
 
-        <div class="container">
+        <div class="container" style="scale:0.9">
             <!-- back button -->
-            <a href="./mdash.php"><i class="fa-solid fa-circle-arrow-left fa-2xl" style="color: #a6b695; left:5%; position:absolute;top:7%;width:25px;height:25px;" onMouseOver="this.style.color='#669c35'" onMouseOut="this.style.color='#a6b695'"></i></a>
+            <a href="./mdash.php" style="position:absolute"><i class="fa-solid fa-circle-arrow-left fa-2xl" style="color: #a6b695; left:5%; position:absolute;top:7%;width:25px;height:25px;" onMouseOver="this.style.color='#669c35'" onMouseOut="this.style.color='#a6b695'"></i></a>
             <section>
 
                 <form action="" method="POST" class="add-product-form" enctype="multipart/form-data">
