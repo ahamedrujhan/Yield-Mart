@@ -210,7 +210,7 @@ $id = $_SESSION['id'];
 
                 <?php
                 $get_data = "SELECT * FROM `orders` WHERE user_id='$id' AND method='credit card'";
-                $result = mysqli_query($con, $get_data);
+                $result = mysqli_query($conn, $get_data);
                 $i = 0;
                 if ($result) {
                     $resultCheck = mysqli_num_rows($result);

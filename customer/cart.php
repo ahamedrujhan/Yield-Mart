@@ -20,16 +20,16 @@ if (isset($_POST['update_update_btn'])) {
    $update_value = $_POST['update_quantity'];
    $update_id = $_POST['update_quantity_id'];
    $product_id = $_POST['update_product_id'];
-   $ca = mysqli_query($con, "SELECT quantity FROM `cart` WHERE id='$update_id'");
+   $ca = mysqli_query($conn, "SELECT quantity FROM `cart` WHERE id='$update_id'");
    $ca1 = mysqli_fetch_row($ca);
    $cav = (int)$ca1[0];
-   $res = mysqli_query($con, "SELECT quantity, IF(quantity-'$update_value'+'$cav' >= 0, 'TRUE', 'FALSE') FROM `products` WHERE product_id='$product_id';");
+   $res = mysqli_query($conn, "SELECT quantity, IF(quantity-'$update_value'+'$cav' >= 0, 'TRUE', 'FALSE') FROM `products` WHERE product_id='$product_id';");
    $re1 = mysqli_fetch_assoc($res);
    $rest = $re1["IF(quantity-'$update_value'+'$cav' >= 0, 'TRUE', 'FALSE')"];
    //var_dump($rest) or die();
    if ($rest == 'TRUE') {
-      $ins = mysqli_query($con, "UPDATE `products` SET quantity= quantity-$update_value+$cav WHERE product_id = '$product_id'");
-      $update_quantity_query = mysqli_query($con, "UPDATE `cart` SET quantity = '$update_value' WHERE id = '$update_id'");
+      $ins = mysqli_query($conn, "UPDATE `products` SET quantity= quantity-$update_value+$cav WHERE product_id = '$product_id'");
+      $update_quantity_query = mysqli_query($conn, "UPDATE `cart` SET quantity = '$update_value' WHERE id = '$update_id'");
    } else {
       echo "<script>alert('Quantity Exceed')</script>";
    }
@@ -42,13 +42,13 @@ if (isset($_POST['remove'])) {
    $remove_id = $_POST['id'];
    $product_id = $_POST['remove_product_id'];
    $qty = $_POST["remove_quantity"];
-   mysqli_query($con, "DELETE FROM `cart` WHERE id = '$remove_id' AND user_id='$id'");
-   mysqli_query($con, "UPDATE `products` SET quantity= quantity+$qty WHERE product_id = '$product_id'");
+   mysqli_query($conn, "DELETE FROM `cart` WHERE id = '$remove_id' AND user_id='$id'");
+   mysqli_query($conn, "UPDATE `products` SET quantity= quantity+$qty WHERE product_id = '$product_id'");
    header('location:cart.php');
 };
 
 if (isset($_POST['removeall'])) {
-   mysqli_query($con, "DELETE FROM `cart` WHERE user_id=$id");
+   mysqli_query($conn, "DELETE FROM `cart` WHERE user_id=$id");
    header('location:cart.php');
 }
 
@@ -115,7 +115,7 @@ if (isset($_POST['removeall'])) {
 
 
 
-               $select_cart = mysqli_query($con, "SELECT * FROM `cart` WHERE user_id=$id");
+               $select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id=$id");
                $grand_total = 0;
                if (mysqli_num_rows($select_cart) > 0) {
                   while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {

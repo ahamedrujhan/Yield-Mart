@@ -5,7 +5,9 @@ $password = "";
 $dbname = "mart";
 
 // Create connection
-$con = new mysqli($servername, $username, $password, $dbname);
-if (!$con) {
+$conn = new mysqli($servername, $username, $password, $dbname);
+if (!$conn) {
     echo "Can't Connect to database";
 }
+
+?>

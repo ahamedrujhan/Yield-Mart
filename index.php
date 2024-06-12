@@ -20,6 +20,10 @@
 <body>
     <?php
     session_start();
+    // print_r($_SESSION);
+    if(isset($_GET["create"])) {
+        echo '<script>alert("Account Created Successfully")</script>';
+    }
     ?>
     <!-- home section start -->
     <div class="home">
@@ -108,35 +112,35 @@
                 <div class="fruit apple">
                     <div class="fruit-text">
                         <h2>Pomegranate</h2>
-                        <span>260kg+</span>
+                        <span>280kg+</span>
                         <p>Sales</p>
                     </div>
                 </div>
                 <div class="fruit apple">
                     <div class="fruit-text">
                         <h2>Pomegranate</h2>
-                        <span>260kg+</span>
+                        <span>230kg+</span>
                         <p>Sales</p>
                     </div>
                 </div>
                 <div class="fruit papaya">
                     <div class="fruit-text">
                         <h2>Papaya</h2>
-                        <span>260kg+</span>
+                        <span>300kg+</span>
                         <p>Sales</p>
                     </div>
                 </div>
                 <div class="fruit carrot">
                     <div class="fruit-text">
                         <h2>Carrot</h2>
-                        <span>260kg+</span>
+                        <span>210kg+</span>
                         <p>Sales</p>
                     </div>
                 </div>
                 <div class="fruit banana">
                     <div class="fruit-text">
                         <h2>Banana</h2>
-                        <span>260kg+</span>
+                        <span>270kg+</span>
                         <p>Sales</p>
                     </div>
                 </div>
@@ -152,7 +156,7 @@
                 <div class="fruit peach">
                     <div class="fruit-text">
                         <h2>Pine Apple</h2>
-                        <span>220kg+</span>
+                        <span>190kg+</span>
                         <p>Sales</p>
                     </div>
                 </div>
@@ -160,7 +164,7 @@
                 <div class="fruit beatroot">
                     <div class="fruit-text">
                         <h2>Beatroot</h2>
-                        <span>280kg+</span>
+                        <span>250kg+</span>
                         <p>Sales</p>
                     </div>
                 </div>
@@ -340,13 +344,11 @@
                     <div class="timer-bg"></div>
                     <div class="counter">
                         <h1 id="day">MISSION</h1>
-                        <p>This system's primary goal is to link all farmers (from small-scale to large-scale) with
-                            wholesalers and retailers in order to empower the farmers by giving them a target
-                            market and increase the efficiency of Sri Lankan agriculture.
-                            To stop unnecessary cultivation of crops
-                            To reduce wastage of crops.
-                            Reduce the excessive buying power of intermediate dealers and price bargaining with
-                            the farmers.</p>
+                        <p>Empower farmers in rural regions by bridging the communication 
+                            gap between them and potential consumers. We aim to provide them with a platform that 
+                            facilitates direct and transparent communication, thereby eliminating intermediaries 
+                            and ensuring fair prices for their produce. Through this, we strive to enhance the livelihoods
+                             of farmers and contribute to the sustainable development of rural communities.</p>
                     </div>
                 </div>
 
@@ -354,13 +356,10 @@
                     <div class="timer-bg"></div>
                     <div class="counter">
                         <h1 id="hour">VISSION</h1>
-                        <p>This system's primary goal is to link all farmers (from small-scale to large-scale) with
-                            wholesalers and retailers in order to empower the farmers by giving them a target
-                            market and increase the efficiency of Sri Lankan agriculture.
-                            To stop unnecessary cultivation of crops
-                            To reduce wastage of crops.
-                            Reduce the excessive buying power of intermediate dealers and price bargaining with
-                            the farmers.</p>
+                        <p>Our vision is to create a connected agricultural ecosystem where farmers have easy access to markets, 
+                            resources, and knowledge regardless of geographical constraints. We envision a future where farmers are able 
+                            to leverage technology to effectively showcase their products, communicate with consumers, and build long-term 
+                            relationships based on trust and mutual benefit.Fostering a thriving agricultural sector.</p>
                     </div>
                 </div>
 
@@ -368,13 +367,11 @@
                     <div class="timer-bg"></div>
                     <div class="counter">
                         <h1 id="minute">ACHIEVEMENTS</h1>
-                        <p>This system's primary goal is to link all farmers (from small-scale to large-scale) with
-                            wholesalers and retailers in order to empower the farmers by giving them a target
-                            market and increase the efficiency of Sri Lankan agriculture.
-                            To stop unnecessary cultivation of crops
-                            To reduce wastage of crops.
-                            Reduce the excessive buying power of intermediate dealers and price bargaining with
-                            the farmers.</p>
+                        <p>Successfully launched a user-friendly website tailored to the needs of farmers in rural regions, facilitating direct 
+                            communication with consumers.Enabled farmers to showcase their produce online, reaching a wider audience and expanding
+                             market opportunities.Provided educational resources and training to farmers on utilizing technology for marketing and 
+                             communication purposes.Established partnerships with local organizations and government agencies to support the sustainability
+                              and growth of the agricultural sector in rural communities</p>
                     </div>
                 </div>
 
@@ -397,86 +394,203 @@
                 <span class="icon-angle-double-right"></span>
             </div>
 
-            <div class="review-items owl-carousel">
-                <div class="review-content">
+           <!-- <div class="review-items owl-carousel">
+               <div class="review-content">
                     <div class="customer-info">
                         <div class="customer-image">
-                            <img src="img/customers/customer_1.jpg" alt="review1">
+                            <img src="customer_/img/customers/customer_1.jpg" alt="review1">
                         </div>
                         <div class="customer-details">
-                            <h2 class="name">Kasun Perera</h2>
-                            <p class="country">Galle</p>
+                            <h2 class="name">Thilshath smt</h2>
+                            <p class="country">224195D</p>
                         </div>
                     </div>
 
                     <div class="review-text">
-                        <p class="review"><span class="icon-quote-left"></span>Great food quality with low cost.fresh vegetables and fruits undder one roof.good customer careGreat food quality with low cost.fresh vegetables and fruits undder one roof.good customer careFast delivery.Great food quality with low cost.
-                            fresh vegetables and fruits undder one roof.good customer care<span class="icon-quote-right"></span></p>
+                        <p class="review"><span class="icon-quote-left"></span>Incredible variety, impeccable freshness! Yeild Mart truly 
+                        delivers on their promise of quality. From farm-fresh vegetables to exotic fruits, they have it all under one roof. 
+                        Plus, their lightning-fast delivery ensures I always get what I need when I need it.<span class="icon-quote-right"></span></p>
                     </div>
                 </div>
 
                 <div class="review-content">
                     <div class="customer-info">
                         <div class="customer-image">
-                            <img src="img/customers/customer_2.jpg" alt="review1">
+                            <img src="customer_/img/customers/customer_2.jpg" alt="review2">
                         </div>
                         <div class="customer-details">
-                            <h2 class="name">Nimal Silva</h2>
-                            <p class="country">Colombo</p>
+                            <h2 class="name">Faskath mhm</h2>
+                            <p class="country">224251X</p>
                         </div>
                     </div>
 
                     <div class="review-text">
-                        <p class="review"><span class="icon-quote-left"></span>Great food quality with low cost.
-                            fresh vegetables and fruits undder one roof.good customer careGreat food quality with low cost.
-                            fresh vegetables and fruits undder one roof.good customer careFast delivery.Great food quality with low cost.
-                            fresh vegetables and fruits undder one roof.good customer care<span class="icon-quote-right"></span></p>
+                        <p class="review"><span class="icon-quote-left"></span>Yeild Mart is a game-changer for busy folks like me. 
+                        With their convenient online ordering and swift delivery, I can get farm-fresh produce delivered straight 
+                        to my doorstep in no time. The quality is unmatched, and I love knowing that I'm supporting local farmers while
+                         enjoying the best fruits and veggies<span class="icon-quote-right"></span></p>
                     </div>
                 </div>
 
                 <div class="review-content">
                     <div class="customer-info">
                         <div class="customer-image">
-                            <img src="img/customers/customer_3.jpg" alt="review1">
+                            <img src="customer_/img/customers/customer_3.jpg" alt="review3">
                         </div>
                         <div class="customer-details">
-                            <h2 class="name">Nihal Zoysa</h2>
-                            <p class="country">Anuradapura</p>
+                            <h2 class="name">Rassahi naleer</h2>
+                            <p class="country">224257V</p>
                         </div>
                     </div>
 
                     <div class="review-text">
-                        <p class="review"><span class="icon-quote-left"></span>Great food quality with low cost.
-                            fresh vegetables and fruits undder one roof.
-                            good customer careGreat food quality with low cost.
-                            fresh vegetables and fruits undder one roof.good customer careFast delivery.Great food quality with low cost.
-                            fresh vegetables and fruits undder one roof.good customer care<span class="icon-quote-right"></span></p>
+                        <p class="review"><span class="icon-quote-left"></span>Freshness you can taste, quality you can trust! 
+                        Yeild Mart has become my go-to for all things produce. Whether it's juicy strawberries or crisp lettuce, 
+                        every item is carefully selected and delivered with care. Plus, their affordable prices make healthy eating 
+                        accessible to everyone. Highly recommend!<span class="icon-quote-right"></span></p>
                     </div>
                 </div>
 
                 <div class="review-content">
                     <div class="customer-info">
                         <div class="customer-image">
-                            <img src="img/customers/customer_4.jpg" alt="review1">
+                            <img src="customer_/img/customers/customer_4.jpg" alt="review4">
                         </div>
 
                         <div class="customer-details">
-                            <h2 class="name">Amal Perera</h2>
-                            <p class="country">Colombo</p>
+                            <h2 class="name">Abdullah mi</h2>
+                            <p class="country">224001H</p>
                         </div>
                     </div>
 
                     <div class="review-text">
-                        <p class="review"><span class="icon-quote-left"></span>Great food quality with low cost.
-                            fresh vegetables and fruits undder one roof.
-                            good customer careGreat food quality with low cost.
-                            fresh vegetables and fruits undder one roof.good customer careFast delivery.Great food quality with low cost.
-                            fresh vegetables and fruits undder one roof.good customer care<span class="icon-quote-right"></span></p>
+                        <p class="review"><span class="icon-quote-left"></span>I've been a loyal customer of Yeild Mart for years, and their
+                         commitment to excellence never fails to impress me. Their produce is always top-notch, and the prices are unbeatable. 
+                         With their wide selection and low costs, I can stock up on everything I need without breaking the bank!<span class="icon-quote-right"></span></p>
                     </div>
+
+                    <div class="review-content">
+                    <div class="customer-info">
+                        <div class="customer-image">
+                            <img src="customer_/img/customers/customer_5.jpg" alt="review5">
+                        </div>
+                        <div class="customer-details">
+                            <h2 class="name">Afzal Zawahir</h2>
+                            <p class="country">224232P</p>
+                        </div>
+                    </div>
+
+                    <div class="review-text">
+                        <p class="review"><span class="icon-quote-left"></span>Yeild Mart is a lifesaver! As a busy mom, I rely on them for 
+                        fresh fruits and vegetables to keep my family healthy. Their wide variety of produce, combined with their 
+                        fast delivery and affordable prices, make grocery shopping a breeze. I never have to compromise on quality or 
+                        convenience, thanks to Yeild Mart !<span class="icon-quote-right"></span></p>
+                    </div>
+                </div>
                 </div>
 
 
             </div>
+        </div> -->
+        <div style="display: flex; flex-direction:row; gap: 10px;">
+             <div class="review-items owl-carousel">
+               <div class="review-content">
+                    <div class="customer-info">
+                        <div class="customer-image">
+                            <img src="customer_/img/customers/customer_1.jpg" alt="review1">
+                        </div>
+                        <div class="customer-details">
+                            <h2 class="name">Thilshath smt</h2>
+                            <p class="country">224195D</p>
+                        </div>
+                    </div>
+
+                    <div class="review-text">
+                        <p class="review"><span class="icon-quote-left"></span>Incredible variety, impeccable freshness! Yeild Mart truly 
+                        delivers on their promise of quality. From farm-fresh vegetables to exotic fruits, they have it all under one roof. 
+                        Plus, their lightning-fast delivery ensures I always get what I need when I need it.<span class="icon-quote-right"></span></p>
+                    </div>
+                </div>
+
+                <div class="review-content">
+                    <div class="customer-info">
+                        <div class="customer-image">
+                            <img src="customer_/img/customers/customer_2.jpg" alt="review2">
+                        </div>
+                        <div class="customer-details">
+                            <h2 class="name">Faskath mhm</h2>
+                            <p class="country">224251X</p>
+                        </div>
+                    </div>
+
+                    <div class="review-text">
+                        <p class="review"><span class="icon-quote-left"></span>Yeild Mart is a game-changer for busy folks like me. 
+                        With their convenient online ordering and swift delivery, I can get farm-fresh produce delivered straight 
+                        to my doorstep in no time. The quality is unmatched, and I love knowing that I'm supporting local farmers while
+                         enjoying the best fruits and veggies<span class="icon-quote-right"></span></p>
+                    </div>
+                </div>
+
+                <div class="review-content">
+                    <div class="customer-info">
+                        <div class="customer-image">
+                            <img src="customer_/img/customers/customer_3.jpg" alt="review3">
+                        </div>
+                        <div class="customer-details">
+                            <h2 class="name">Rassahi naleer</h2>
+                            <p class="country">224257V</p>
+                        </div>
+                    </div>
+
+                    <div class="review-text">
+                        <p class="review"><span class="icon-quote-left"></span>Freshness you can taste, quality you can trust! 
+                        Yeild Mart has become my go-to for all things produce. Whether it's juicy strawberries or crisp lettuce, 
+                        every item is carefully selected and delivered with care. Plus, their affordable prices make healthy eating 
+                        accessible to everyone. Highly recommend!<span class="icon-quote-right"></span></p>
+                    </div>
+                </div>
+
+                <!-- <div class="review-content">
+                    <div class="customer-info">
+                        <div class="customer-image">
+                            <img src="customer_/img/customers/customer_4.jpg" alt="review4">
+                        </div>
+
+                        <div class="customer-details">
+                            <h2 class="name">Abdullah mi</h2>
+                            <p class="country">224001H</p>
+                        </div>
+                    </div>
+
+                    <div class="review-text">
+                        <p class="review"><span class="icon-quote-left"></span>I've been a loyal customer of Yeild Mart for years, and their
+                         commitment to excellence never fails to impress me. Their produce is always top-notch, and the prices are unbeatable. 
+                         With their wide selection and low costs, I can stock up on everything I need without breaking the bank!<span class="icon-quote-right"></span></p>
+                    </div>
+
+                    <div class="review-content">
+                    <div class="customer-info">
+                        <div class="customer-image">
+                            <img src="customer_/img/customers/customer_5.jpg" alt="review5">
+                        </div>
+                        <div class="customer-details">
+                            <h2 class="name">Afzal Zawahir</h2>
+                            <p class="country">224232P</p>
+                        </div>
+                    </div>
+
+                    <div class="review-text">
+                        <p class="review"><span class="icon-quote-left"></span>Yeild Mart is a lifesaver! As a busy mom, I rely on them for 
+                        fresh fruits and vegetables to keep my family healthy. Their wide variety of produce, combined with their 
+                        fast delivery and affordable prices, make grocery shopping a breeze. I never have to compromise on quality or 
+                        convenience, thanks to Yeild Mart !<span class="icon-quote-right"></span></p>
+                    </div>
+                </div>
+                </div> -->
+
+
+            </div>
+        </div>
         </div>
         <!-- customer review section end -->
 
@@ -498,18 +612,18 @@
                             <h2>Information</h2>
                             <div class="contact-address">
                                 <span class="icon-map-marked-alt"></span>
-                                <p>127,Poorwarama Road,Sibel,Colombo 03<br>
+                                <p>University of Moratuwa,kadubedda<br>
                                 </p>
                             </div>
 
                             <div class="contact-mail">
                                 <span class="icon-envelope"></span>
-                                <p>aaa@gmail.com</p>
+                                <p>Fit@22.UOM.lk</p>
                             </div>
 
                             <div class="contact-phone">
                                 <span class="icon-phone-alt"></span>
-                                <p>+94 012-345-6789</p>
+                                <p>+94 777777777</p>
                             </div>
                         </div>
 
@@ -661,9 +775,9 @@
 
             <!-- copyright area start -->
             <footer>
-                <p>Created By <a href="https://www.youtube.com/channel/UCr4TC9YxsDZwzwIxnZOVlBw" target="_blank">UCSC 18th
+                <p>Created By <a href="https://www.youtube.com/channel/UCr4TC9YxsDZwzwIxnZOVlBw" target="_blank">FIT@UOM_22nd
                         batch</a> |
-                    &copy; 2022 All rights reserved</p>
+                    &copy; 2024 All rights reserved</p>
             </footer>
             <!-- copyright area end -->
         </div>
@@ -681,7 +795,8 @@
         <!-- custom script -->
         <script src="js/script.js"></script>
 
-</body>
+
+    </body>
 
 <?php
 session_start();

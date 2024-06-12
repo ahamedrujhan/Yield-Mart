@@ -6,7 +6,7 @@ require_once './secrets.php';
 \Stripe\Stripe::setApiKey($stripeSecretKey);
 header('Content-Type: application/json');
 
-$YOUR_DOMAIN = 'http://localhost/yieldmart/Yield-Mart/customer/stripe/';
+$YOUR_DOMAIN = 'http://localhost/next/customer/stripe/';
 
 $productName = $_SESSION["product"];
 $stripeAmount = $_SESSION["amount"];

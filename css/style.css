@@ -1669,6 +1669,11 @@ input[type=number] {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    justify-content: flex-start;
+    /* border: 1px solid black; */
+
 }
 
 .review-items .review-content {

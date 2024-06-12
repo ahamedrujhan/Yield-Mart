@@ -12,7 +12,7 @@ if ($result) {
   $resultCheck = mysqli_num_rows($result);
   if ($resultCheck > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-
+// print_r($row);
 ?>
 
 
@@ -158,7 +158,7 @@ if ($result) {
                 <p>Customer Address: <?php echo $row['address']; ?></p>
               </div>
               <div>
-                <p>Date:<?php echo $row['date']; ?> </p>
+                <p>Ordered On:<?php echo $row['ordered_on']; ?> </p>
               </div>
             </div>
             <table>

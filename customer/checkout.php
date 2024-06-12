@@ -21,7 +21,7 @@ if (isset($_POST['order_btn'])) {
 
 
 
-   $cart_query = mysqli_query($con, "SELECT * FROM `cart` WHERE user_id='$id'");
+   $cart_query = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id='$id'");
    $price_total = 0;
    if (mysqli_num_rows($cart_query) > 0) {
       while ($product_item = mysqli_fetch_assoc($cart_query)) {
@@ -39,12 +39,12 @@ if (isset($_POST['order_btn'])) {
    //var_dump($_SESSION) or die();
 
 
-   $detail_query = mysqli_query($con, $query);
+   $detail_query = mysqli_query($conn, $query);
    print_r($detail_query) or die();
 
 
    if ($cart_query && $detail_query) {
-      mysqli_query($con, "DELETE FROM `cart` WHERE user_id=$id");
+      mysqli_query($conn, "DELETE FROM `cart` WHERE user_id=$id");
       if ($method == "cash on delivery") {
          echo "
       <div class='order-message-container'>
@@ -132,7 +132,7 @@ if (isset($_POST['order_btn'])) {
 
             <div class="display-order">
                <?php
-               $select_cart = mysqli_query($con, "SELECT * FROM `cart` WHERE user_id='$id'");
+               $select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id='$id'");
                $total = 0;
                $grand_total = 0;
                if (mysqli_num_rows($select_cart) > 0) {

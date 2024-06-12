@@ -76,7 +76,7 @@ $sql1 = "SELECT * FROM `users` WHERE status=1 AND role='Farmer'"
                     $sqlRequestaccept = "UPDATE `users` SET `status`=1 WHERE `user_id`=$Uid";
                     $sqlAccept = mysqli_query($conn, $sqlRequestaccept);
                     // var_dump($Rid);
-                    header("Location:control.php");
+                    header("Location:f-control.php");
                 }
             }
         }
@@ -128,7 +128,7 @@ $sql1 = "SELECT * FROM `users` WHERE status=1 AND role='Farmer'"
                     $sqlRequestaccept1 = "UPDATE `users` SET `status`=0 WHERE `user_id`=$Uid";
                     $sqlAccept = mysqli_query($conn, $sqlRequestaccept1);
                     // var_dump($Rid);
-                    header("Location:control.php");
+                    header("Location:f-control.php");
                 }
             }
         }

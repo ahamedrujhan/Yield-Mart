@@ -32,9 +32,9 @@
     $fname = $_POST["fname"];
     $lname = $_POST["lname"];
     $email = $_POST["email"];
-    $address = $_POST["address"];
+    $address = isset($_POST["address"]) ? $_POST["address"] : '';
     $gender = $_POST["gender"];
-    $number = $_POST["number"];
+    $number = isset($_POST["number"]) ? $_POST["number"] : '';
     $password = $_POST["pass"];
     $c_password = $_POST["c_pass"];
     $v = TRUE;
@@ -106,7 +106,9 @@
         } else {
           $re1 = mysqli_query($conn, $sql);
           if ($re1 == true) {
-            header("Location:index.php");
+            // echo '<script>alert("Account Created Successfully")</script>'; 
+            // sleep(3);
+            header("Location:index.php?create");
           }
         }
       } else {
@@ -139,25 +141,25 @@
     </span>
     <div class="row">
       <div class="icon"><i class="fa-solid fa-envelope fa-xl" style="color: #f7f7f7; position: relative;
-        top: 20%;"></i></div><input name="email" type="email" placeholder="Email" value="<?php echo $_POST["email"]; ?>" required>
+        top: 20%;"></i></div><input name="email" type="email" placeholder="Email" value="<?php echo isset($_POST["email"]) ? $_POST["email"] : ''; ?>" required>
     </div>
     <div class="row name"><span class="error"><?php echo $fnameErr; ?>
       </span>
-      <input type="text" placeholder="First Name" name="fname" value="<?php echo $_POST["fname"]; ?> " required><span class="error"><?php echo $lnamelErr; ?>
+      <input type="text" placeholder="First Name" name="fname" value="<?php echo isset($_POST["fname"]) ? $_POST["fname"] : ''; ?>" required><span class="error"><?php echo $lnameErr; ?>
       </span>
-      <input type="text" placeholder="Last Name" name="lname" value="<?php echo $_POST["lname"]; ?> " required>
+      <input type="text" placeholder="Last Name" name="lname" value="<?php echo isset($_POST["lname"]) ? $_POST["lname"] : ''; ?>" required>
     </div>
     <label>Address:</label><span class="error"><?php echo $addErr; ?>
     </span>
     <div class="row">
       <div class="icon"><i class="fa-solid fa-location-dot fa-xl" style="color: #f7f7f7; position: relative;
-        top: 20%;"></i></div><input type="text" placeholder="Address" name="address" value="<?php echo $_POST["address"]; ?>" minlength="10" required>
+        top: 20%;"></i></div><input type="text" placeholder="Address" name="address" value="<?php echo isset($_POST["address"]) ? $_POST["address"] : ''; ?>" minlength="10" required>
     </div>
     <label>Phone:</label><span class="error"><?php echo $numErr; ?>
     </span>
     <div class="row">
       <div class="icon"><i class="fa-solid fa-phone fa-xl" style="color: #f7f7f7; position: relative;
-        top: 20%;"></i></div><input name="number" type="number" placeholder="Phone Number" value="<?php echo $_POST["number"]; ?>" required>
+        top: 20%;"></i></div><input name="number" type="number" placeholder="Phone Number" value="<?php echo isset($_POST["number"]) ? $_POST["number"] : ''; ?>" required>
     </div>
     <label>Gender:</label>
     <div class="row">

@@ -36,35 +36,35 @@ if ($_SESSION['role'] != "Manager") {
     height: 50px;">
 
             <li>
-                <a href="mdashboard.php">
+                <a href="mdash.php">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Dashboard</span>
                 </a>
                 <span class="tooltip">Dashboard</span>
             </li><br>
             <li>
-                <a href="products.php">
+                <a href="addStocks.php">
                     <i class="bx bx-grid-horizontal"></i>
                     <span class="links_name">Stock Management</span>
                 </a>
                 <span class="tooltip">Stock Management</span>
             </li><br>
             <li>
-                <a href="technician.php">
+                <a href="stocks.php">
                     <i class='bx bx-user '></i>
                     <span class="links_name">View Available Stocks</span>
                 </a>
                 <span class="tooltip">View Available Stocks</span>
             </li><br>
             <li>
-                <a href="mjob.php">
+                <a href="requests.php">
                     <i class='bx bxs-cart-alt'></i>
                     <span class="links_name">Requests</span>
                 </a>
                 <span class="tooltip">Requests</span>
             </li><br>
             <li>
-                <a href="email.php">
+                <a href="f-orders.php">
                     <i class='bx bx-envelope'></i>
                     <span class="links_name">Orders</span>
                 </a>
@@ -98,7 +98,7 @@ if ($_SESSION['role'] != "Manager") {
                 <button class="c-b" onclick="window.location.href='./f-orders.php';">Orders</button>
             </div>
             <div class="s-container">
-                <h3>Wholeseller</h3>
+                <h3>Customers</h3>
                 <button class="c-b" onclick="window.location.href='./addProducts.php';">Product Management</button>
                 <button class="c-b" onclick="window.location.href='./products.php';">Available Products</button>
                 <button class="c-b" onclick="window.location.href='./sc-orders.php';">COD-Orders</button>
