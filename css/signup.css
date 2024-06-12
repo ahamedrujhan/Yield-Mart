@@ -1,0 +1,200 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  background-size: cover;
+  /* background-color: #343a40; */
+  background-image: url("https://img.freepik.com/premium-photo/border-fresh-vegetables-wooden-background-with-copy-space_116547-609.jpg");
+}
+
+#container {
+  scale: 0.88;
+  margin: auto;
+  display: flex;
+  /* color: #f8f9fa; */
+  color: rgb(0, 0, 0);
+  flex-direction: column;
+  width: 500px;
+  /* box-shadow: 1px 2px 71px -6px rgba(0, 0, 0, 0.67); */
+  height: fit-content;
+  font-family: sans-serif;
+  /* background-color: #212529; */
+  padding: 25px 20px;
+  border-radius: 10px;
+  border-color: rgb(0, 0, 0);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+#Heading {
+  padding: 15px;
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: 900;
+}
+
+label {
+  font-size: 1.1em;
+  font-weight: 500;
+  margin: 10px 0px;
+}
+
+input {
+  padding: 10px;
+  border-top-right-radius: 10px;
+  height: 50px;
+  background-color: #eaeff3bf;
+  border-bottom-right-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 19px;
+  transition-duration: 0.15s;
+
+  /* color: #f8f9fa; */
+  color: rgb(0, 0, 0);
+}
+
+.gender {
+  padding: 10px;
+  border-top-right-radius: 10px;
+  height: 50px;
+  background-color: #eaeff3bf;
+  border-bottom-right-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 19px;
+  transition-duration: 0.15s;
+
+  /* color: #f8f9fa; */
+  color: rgb(0, 0, 0);
+}
+
+input:focus {
+  outline: none;
+  background-color: none;
+}
+
+input::placeholder {
+  /* color: #f8f9fa; */
+  color: rgb(0, 0, 0);
+  font-size: 19.2px;
+}
+
+.row:not(.name) {
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 50px;
+}
+
+.name {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  margin-top: 20px;
+
+}
+
+.name>input {
+  width: calc(50% - 5px);
+  margin: 5px;
+  border-radius: 10px;
+  ;
+}
+
+.icon {
+  top: 40%;
+  height: 50px;
+  background-color: #6c757d;
+  border-top-left-radius: 10px;
+  padding: 10px;
+  margin-right: 1px;
+  border-bottom-left-radius: 10px;
+  fill: white;
+}
+
+button {
+  width: fit-content;
+  margin: 20px auto;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  color: white;
+  background-color: #000000;
+  font-family: sans-serif;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition-duration: 0.25s;
+}
+
+button:hover {
+  background-color: #00000093;
+}
+
+span {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+a {
+  text-decoration: none;
+  color: #99e2b4;
+}
+
+span>span>a {
+  margin: 0px 5px
+}
+
+a:hover {
+  color: #06d6a0;
+}
+
+#MsgBx {
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: auto;
+  padding: 20px;
+}
+
+#MsgBx>li {
+  list-style: none;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #036666;
+  width: fit-content;
+  font-family: 'Ubuntu', sans-serif;
+  position: relative;
+  animation: enteranceError 1s ease;
+  margin: 5px;
+}
+
+input:focus {
+  border: 5px solid #06d6a0;
+  height: 49px;
+  margin-top: 2px;
+}
+
+.error {
+  color: #a40d0d;
+}
+
+.message {
+  color: #ffffff;
+  left: 35%;
+  top: 3%;
+  position: absolute;
+  font-size: 25px;
+}

@@ -1,0 +1,174 @@
+body{
+
+
+    font-family: Verdana;
+}
+
+h2{
+color: rgb(85, 81, 81);
+padding-left: 80px;
+position: relative;
+}
+
+
+.box{
+    position: relative;
+    
+margin-top:5%;
+margin-left: 40%;
+border:   2px solid rgb(97, 98, 97);
+margin-right: 20%;
+}
+form{
+font-size: 17px;
+padding-left: 50px;
+display: inline-block;
+}
+input{
+width: 350px;
+text-align: justify;
+border:none;
+
+}
+button{
+    border-radius: 8px;
+    width: 100px;
+    height: 40px;
+font-size: 17px;
+position: relative;
+left: 120px;
+margin-bottom: 30px;
+}
+.edit{
+color: rgb(241, 244, 241);
+
+background-color: rgb(35, 89, 35);
+}
+
+.save{
+
+
+    color: rgb(241, 244, 241);
+    background-color: rgb(80, 150, 230);
+}
+.delete{
+
+    background-color: rgb(175, 35, 53);
+    color: rgb(241, 244, 241);
+
+
+}
+.update{
+    width: 150px;
+   background-color: rgb(48, 84, 48);
+
+   color: rgb(241, 244, 241);
+
+}
+.imgsave{
+
+
+    color: rgb(241, 244, 241);
+    background-color: rgb(80, 150, 230);
+}
+
+.image{
+    margin-top:-450px;
+    margin-left: 11%;
+    
+    margin-right: 60%;
+}
+
+
+
+
+.fa-eye{
+position: absolute;
+cursor:pointer;
+top:76%;
+left:80%;
+
+}
+
+.upload{
+    width: 190px;
+    position: relative;
+    margin: auto;
+  }
+  
+  .upload img{
+    border-radius: 50%;
+    border: 6px solid #eaeaea;
+  }
+  
+  .upload .round{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #183e29;
+    width: 32px;
+    height: 32px;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .upload .round input[type = "file"]{
+    position: absolute;
+    transform: scale(2);
+    opacity: 0;
+  }
+  
+  input[type=file]::-webkit-file-upload-button{
+      cursor: pointer;
+  }
+  .upload{
+    width: 140px;
+    position: relative;
+    margin: auto;
+    text-align: center;
+  }
+  .upload img{
+    border-radius: 50%;
+    border: 8px solid #DCDCDC;
+    width: 125px;
+    height: 125px;
+  }
+  .upload .rightRound{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #183e29;
+    width: 32px;
+    height: 32px;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .upload .leftRound{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: red;
+    width: 32px;
+    height: 32px;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .upload .fa{
+    color: white;
+  }
+  .upload input{
+    position: absolute;
+    transform: scale(2);
+    opacity: 0;
+  }
+  .upload input::-webkit-file-upload-button, .upload input[type=submit]{
+    cursor: pointer;
+  }
